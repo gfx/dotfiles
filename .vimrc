@@ -43,13 +43,13 @@ inoremap <expr> ,dt strftime('%H:%M:%S')
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932
 
-imap {} {}<Left>
-imap [] []<Left>
-imap () ()<Left>
-imap <> <><Left>
-imap '' ''<Left>
-imap "" ""<Left>
-imap `` ``<Left>
+"imap {} {}<Left>
+"imap [] []<Left>
+"imap () ()<Left>
+"imap <> <><Left>
+"imap '' ''<Left>
+"imap "" ""<Left>
+"imap `` ``<Left>
 
 function!Trim()
     let s:cursor = getpos(".")
