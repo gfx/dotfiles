@@ -41,12 +41,27 @@ inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
 
 set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932 
+set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932
 
+imap {} {}<Left>
+imap [] []<Left>
+imap () ()<Left>
+imap <> <><Left>
+imap '' ''<Left>
+imap "" ""<Left>
+imap `` ``<Left>
+
+function!Trim()
+    let s:cursor = getpos(“.”)
+    %s/\s\+$//e
+    call setpos(“.”, s:cursor)
+endfunction
+
+autocmd! BufWritePre *.{pl,pm,t,psgi,c,xs,rb,py,txt,tx,html} call Trim()
 
 "perl settings
 augroup filetypedetect
-autocmd! BufNewFile,BufRead *.t    setf perl
-autocmd! BufNewFile,BufRead *.psgi setf perl
+    autocmd! BufNewFile,BufRead *.t    setf perl
+    autocmd! BufNewFile,BufRead *.psgi setf perl
 augroup END
 

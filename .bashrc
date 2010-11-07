@@ -80,6 +80,7 @@ function git_branch {
 
 function proml {
     local        BLUE="\[\033[0;34m\]"
+    local  LIGHT_BLUE="\[\033[1;34m\]"
     local         RED="\[\033[0;31m\]"
     local   LIGHT_RED="\[\033[1;31m\]"
     local       GREEN="\[\033[0;32m\]"
@@ -95,9 +96,10 @@ function proml {
         ;;
     esac
 
-    PS1="$TITLEBAR$GREEN\w \$ $LIGHT_GRAY"
+    PS1="$TITLEBAR$LIGHT_BLUE\w\$ $LIGHT_GRAY"
     PS2='> '
     PS4='+ '
 }
 proml
+
 
