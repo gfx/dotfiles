@@ -52,9 +52,9 @@ imap "" ""<Left>
 imap `` ``<Left>
 
 function!Trim()
-    let s:cursor = getpos(“.”)
+    let s:cursor = getpos(".")
     %s/\s\+$//e
-    call setpos(“.”, s:cursor)
+    call setpos(".", s:cursor)
 endfunction
 
 autocmd! BufWritePre *.{pl,pm,t,psgi,c,xs,rb,py,txt,tx,html} call Trim()
