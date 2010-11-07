@@ -1,5 +1,5 @@
 " .vimrc
-set nocompatible " must be first!
+set nocompatible " this is vim, not vi
 
 syntax on
 
