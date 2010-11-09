@@ -60,18 +60,24 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export PATH="$HOME/.vim/bin:$HOME/bleadperl/bin:$HOME/ancientperl/bin:$PATH"
+#PATH="/usr/local/mysql/bin:$PATH"
+PATH="$HOME/.vim/bin:$PATH"
+PATH="$HOME/bleadperl/bin:$HOME/ancientperl/bin:$PATH"
+export PATH
+
 source /home/gfx/perl5/perlbrew/etc/bashrc
 
-export EDITOR=/usr/bin/vim
-export PAGER='/bin/less --raw-control-chars'
+export EDITOR='/usr/bin/vim'
+export PAGER='/usr/bin/less -r'
+export PERLDOC_PAGER='/usr/bin/vim'
 
 # ------------------------------------------------------------------------------#
-# This function sets the title of the terminal-emulator
-# or tab.
-# ------------------------------------------------------------------------------#
-title() {
+function title {
     echo -ne "\033]0;${1}\007"
+}
+
+function pm {
+  PERLDOC_PAGER=$EDITOR perldoc -m $*
 }
 
 function git_branch {
