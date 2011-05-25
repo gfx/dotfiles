@@ -1,0 +1,8 @@
+--type-set
+perl=.t,.psgi
+
+--type-set
+pod=.pl,.pm
+
+--type-set
+header=.h,.hpp,.hxx
