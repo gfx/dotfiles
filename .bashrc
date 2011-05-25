@@ -44,6 +44,9 @@ alias ll='ls -lF'
 alias la='ls -A'
 alias l='ls -CF'
 
+alias g++="g++ -Wall -Wextra"
+alias gcc="gcc -Wall -Wextra"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -57,19 +60,32 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    source /etc/bash_completion
 fi
 
 #PATH="/usr/local/mysql/bin:$PATH"
+
 PATH="$HOME/.vim/bin:$PATH"
 PATH="$HOME/bleadperl/bin:$HOME/ancientperl/bin:$PATH"
 export PATH
 
-source /home/gfx/perl5/perlbrew/etc/bashrc
+if [ -s "$HOME/perl5/perlbrew/etc/bashrc" ] ; then
+    source "$HOME/perl5/perlbrew/etc/bashrc"
+fi
+
+if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
+    source "$HOME/.rvm/scripts/rvm"
+fi
+
+if [ -s "$HOME/.pythonbrew/etc/bashrc"] ; then
+    source "$HOME/.pythonbrew/etc/bashrc"
+fi
 
 export EDITOR='/usr/bin/vim'
-export PAGER='/usr/bin/less -r'
-export PERLDOC_PAGER='/usr/bin/vim'
+export PAGER='/usr/bin/less'
+export LESS='-r'
+
+export PERL_CPANM_OPT='-q'
 
 # ------------------------------------------------------------------------------#
 function title {
@@ -108,4 +124,10 @@ function proml {
 }
 proml
 
+# for performance
+if [ "$PS1" ] ; then
+    mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
+    echo $$ > /dev/cgroup/cpu/user/$$/tasks
+    echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
+fi
 
