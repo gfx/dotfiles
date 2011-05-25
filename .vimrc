@@ -60,9 +60,11 @@ autocmd! BufWritePre *.{pl,pm,t,psgi,c,xs,rb,py,txt,tx,html} call Trim()
 augroup filetypedetect
     autocmd! BufNewFile,BufRead *.t    setf perl
     autocmd! BufNewFile,BufRead *.psgi setf perl
+    autocmd! BufNewFile,BufRead *.inc  setf xs
+    autocmd! BufNewFile,BufRead *.ejs  setf html
 augroup END
 
-au BufRead,BufNewFile Makefile* set noexpandtab
+au BufRead,BufNewFile Makefile set noexpandtab
 
 " for plugins
 
@@ -73,5 +75,8 @@ map <silent> sP :call YanktmpPaste_P()<cr>
 let g:yanktmp_file = '/home/user/tmp/yanktmp'
 
 " taglist.vim
-nnoremap ; :TlistToggle<Enter><C-w>h
+let g:Tlist_Close_On_Select   = 1
+let g:Tlist_Display_Prototype = 1
+let g:Tlist_Use_Right_Window  = 1
+nnoremap ; :TlistToggle<Enter><C-w>l
 
