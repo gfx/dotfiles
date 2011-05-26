@@ -53,7 +53,7 @@ alias gcc="gcc -Wall -Wextra"
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+    source ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -77,7 +77,7 @@ if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
     source "$HOME/.rvm/scripts/rvm"
 fi
 
-if [ -s "$HOME/.pythonbrew/etc/bashrc"] ; then
+if [ -s "$HOME/.pythonbrew/etc/bashrc" ] ; then
     source "$HOME/.pythonbrew/etc/bashrc"
 fi
 
@@ -125,7 +125,7 @@ function proml {
 proml
 
 # for performance
-if [ "$PS1" ] ; then
+if [ "$PS1" ] && [ -e /dev/cgroup ] ; then
     mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
     echo $$ > /dev/cgroup/cpu/user/$$/tasks
     echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
