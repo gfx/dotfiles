@@ -7,6 +7,6 @@ if [ "$_PWD" ] ; then
 fi
 
 export CYGWIN=title
-export TERM=cygwin
+export TERM=xterm
 
 
