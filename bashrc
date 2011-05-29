@@ -63,6 +63,9 @@ fi
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
+
+    complete -o default -F _perldoc pm
+    complete -o default -F _perldoc pm-ack
 fi
 
 #PATH="/usr/local/mysql/bin:$PATH"
@@ -138,4 +141,6 @@ case "`uname`" in
     CYGWIN*) source ~/.bash/cygwin.sh ;;
 esac
 
+
 titie "$HOME"
+
