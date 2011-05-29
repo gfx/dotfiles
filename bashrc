@@ -142,5 +142,5 @@ case "`uname`" in
 esac
 
 
-titie "$HOME"
+title "$HOME"
 
