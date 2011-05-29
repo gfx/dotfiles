@@ -1,8 +1,5 @@
-#!bash
+#!/usr/bin/env bash
 echo "setup.sh for $HOME"
-
-cpanm Daiku
-cpanm IPC::System::Simple # for autodie 'system'
 
 ln bashrc       ~/.bashrc
 ln bash_aliases ~/.bash_aliases
@@ -15,3 +12,6 @@ ln vimrc        ~/.vimrc
 ln ackrc        ~/.ackrc
 ln perltidyrc   ~/.perltidyrc
 
+mkdir ~/bin
+git submodule init && git submodule update
+ln perldoc-complete/perldoc-complete ~/bin/

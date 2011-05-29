@@ -1,0 +1,3 @@
+[submodule "perldoc-complete"]
+	path = perldoc-complete
+	url = git://github.com/ap/perldoc-complete.git

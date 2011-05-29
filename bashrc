@@ -63,10 +63,9 @@ fi
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
-
-    complete -o default -F _perldoc pm
-    complete -o default -F _perldoc pm-ack
 fi
+
+complete -C perldoc-complete -o nospace -o default perldoc
 
 #PATH="/usr/local/mysql/bin:$PATH"
 
@@ -97,14 +96,6 @@ export LESS='-r'
 export PERL_CPANM_OPT='-q'
 
 # ------------------------------------------------------------------------------#
-
-function pm {
-    PERLDOC_PAGER=$EDITOR perldoc -m $*
-}
-
-function pm-update {
-    cpan-updated -p | cpanm -q
-}
 
 function git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
