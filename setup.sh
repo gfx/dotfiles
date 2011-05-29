@@ -1,4 +1,5 @@
-LANG=C
+#!bash
+echo "setup.sh for $HOME"
 
 cpanm Daiku
 cpanm IPC::System::Simple # for autodie 'system'

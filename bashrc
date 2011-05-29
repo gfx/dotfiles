@@ -138,3 +138,4 @@ case "`uname`" in
     CYGWIN*) source ~/.bash/cygwin.sh ;;
 esac
 
+titie "$HOME"
