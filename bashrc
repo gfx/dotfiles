@@ -5,6 +5,18 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+function title {
+    echo -ne "\033]0;${1}\007"
+}
+title "reading ~/.bashrc ..."
+
+# for performance
+if [ -e /dev/cgroup ] ; then
+    mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
+    echo $$ > /dev/cgroup/cpu/user/$$/tasks
+    echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
+fi
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
@@ -31,21 +43,11 @@ export PS1='\w\$ '
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# some more ls aliases
-alias ll='ls -lF'
-alias la='ls -A'
-alias l='ls -CF'
-
-alias g++="g++ -Wall -Wextra"
-alias gcc="gcc -Wall -Wextra"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -65,21 +67,25 @@ fi
 
 #PATH="/usr/local/mysql/bin:$PATH"
 
-PATH="$HOME/.vim/bin:$PATH"
-PATH="$HOME/bleadperl/bin:$HOME/ancientperl/bin:$PATH"
+PATH="~/.vim/bin:$PATH"
+PATH="~/bleadperl/bin:~/ancientperl/bin:$PATH"
 export PATH
 
-if [ -s "$HOME/perl5/perlbrew/etc/bashrc" ] ; then
-    source "$HOME/perl5/perlbrew/etc/bashrc"
+if [ -s ~/perl5/perlbrew/etc/bashrc ] ; then
+    source ~/perl5/perlbrew/etc/bashrc
 fi
 
-if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
-    source "$HOME/.rvm/scripts/rvm"
+if [ -s ~/.rvm/scripts/rvm ] ; then
+    source ~/.rvm/scripts/rvm
 fi
 
-if [ -s "$HOME/.pythonbrew/etc/bashrc" ] ; then
-    source "$HOME/.pythonbrew/etc/bashrc"
+if [ -s ~/.pythonbrew/etc/bashrc ] ; then
+    source ~/.pythonbrew/etc/bashrc
 fi
+
+# make PATH unique
+export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$PATH"
+`
 
 export EDITOR='/usr/bin/vim'
 export PAGER='/usr/bin/less'
@@ -88,12 +94,13 @@ export LESS='-r'
 export PERL_CPANM_OPT='-q'
 
 # ------------------------------------------------------------------------------#
-function title {
-    echo -ne "\033]0;${1}\007"
-}
 
 function pm {
-  PERLDOC_PAGER=$EDITOR perldoc -m $*
+    PERLDOC_PAGER=$EDITOR perldoc -m $*
+}
+
+function pm-update {
+    cpan-updated -p | cpanm -q
 }
 
 function git_branch {
@@ -109,7 +116,7 @@ function proml {
     local LIGHT_GREEN="\[\033[1;32m\]"
     local       WHITE="\[\033[1;37m\]"
     local  LIGHT_GRAY="\[\033[0;37m\]"
-    case $TERM in
+    case "$TERM" in
         xterm*)
         TITLEBAR='\[\033]0;\w $(git_branch) \u@\h\007\]'
         ;;
@@ -124,10 +131,10 @@ function proml {
 }
 proml
 
-# for performance
-if [ "$PS1" ] && [ -e /dev/cgroup ] ; then
-    mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
-    echo $$ > /dev/cgroup/cpu/user/$$/tasks
-    echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
-fi
+# OS specific resources
+case "`uname`" in
+    Linux)   source ~/.bash/linux.sh ;;
+    Darwin)  source ~/.bash/darwin.sh ;;
+    CYGWIN*) source ~/.bash/cygwin.sh ;;
+esac
 

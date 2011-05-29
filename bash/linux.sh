@@ -1,0 +1,2 @@
+#!bash
+# Linux-specific resources

@@ -1,0 +1,2 @@
+#!bash
+# MacOSX-specific resources
