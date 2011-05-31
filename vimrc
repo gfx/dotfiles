@@ -12,7 +12,7 @@ set backspace=indent,eol,start
 set shiftwidth=4
 "set pastetoggle=<F11>
 
-"set number
+set number
 set nowrapscan
 set incsearch
 set ignorecase
@@ -72,7 +72,7 @@ au BufRead,BufNewFile Makefile set noexpandtab
 map <silent> sy :call YanktmpYank()<cr>
 map <silent> sp :call YanktmpPaste_p()<cr>
 map <silent> sP :call YanktmpPaste_P()<cr>
-let g:yanktmp_file = '/home/user/tmp/yanktmp'
+let g:yanktmp_file = '/tmp/vim-yanktmp'
 
 " taglist.vim
 let g:Tlist_Close_On_Select   = 1
