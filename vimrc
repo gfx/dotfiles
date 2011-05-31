@@ -66,13 +66,19 @@ augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
 
+set clipboard=unnamed
+
 " for plugins
+
+" vundle
+set rtp+=~/.vim/vundle
+call vundle#rc()
 
 " yanktmp http://www.vim.org/scripts/script.php?script_id=1598
 map <silent> sy :call YanktmpYank()<cr>
 map <silent> sp :call YanktmpPaste_p()<cr>
 map <silent> sP :call YanktmpPaste_P()<cr>
-let g:yanktmp_file = '/tmp/vim-yanktmp'
+let g:yanktmp_file = '~/tmp/vim-yanktmp'
 
 " taglist.vim
 let g:Tlist_Close_On_Select   = 1
