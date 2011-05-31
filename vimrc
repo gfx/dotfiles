@@ -25,10 +25,13 @@ set hlsearch
 
 " <space>s. - reload .vimrc
 nnoremap <Space>s. :<C-u>source $MYVIMRC<CR>
-" show help aboutthe current word by :help
-nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><Enter>
+
 " shortcut for :help
-"nnoremap <C-h> :<C-u>help<Space>
+nnoremap <C-i> :<C-u>help<Space>
+" show help aboutthe current word by :help
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+
+nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
 " move
 noremap j gj
@@ -37,11 +40,12 @@ noremap gj j
 noremap gk k
 
 " move in wndows
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+noremap <C-h> <C-w><C-h>
+noremap <C-j> <C-w><C-j>
+noremap <C-k> <C-w><C-k>
+noremap <C-l> <C-w><C-l>
 
+" shortcuts for timestamp
 inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
@@ -67,6 +71,16 @@ augroup END
 au BufRead,BufNewFile Makefile set noexpandtab
 
 set clipboard=unnamed
+
+" highlighten the cursor line only if it's forcused
+set cursorline
+augroup cch
+    autocmd! cch
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+
+
 
 " for plugins
 
