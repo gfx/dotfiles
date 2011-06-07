@@ -11,6 +11,7 @@ mkdir ~/.bash
 ln vimrc        ~/.vimrc
 ln ackrc        ~/.ackrc
 ln perltidyrc   ~/.perltidyrc
+ln gitignore    ~/.gitignore
 
 mkdir ~/bin
 git submodule init && git submodule update
