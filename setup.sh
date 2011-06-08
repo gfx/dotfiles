@@ -12,6 +12,7 @@ ln vimrc        ~/.vimrc
 ln ackrc        ~/.ackrc
 ln perltidyrc   ~/.perltidyrc
 ln gitignore    ~/.gitignore
+ln tmux.conf    ~/.tmux.conf
 
 mkdir ~/bin
 git submodule init && git submodule update
