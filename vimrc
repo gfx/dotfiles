@@ -70,7 +70,7 @@ augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
 
-set clipboard=unnamed
+"set clipboard=unnamed
 
 " highlighten the cursor line only if it's forcused
 set cursorline
@@ -88,6 +88,15 @@ augroup END
 set rtp+=~/.vim/vundle
 call vundle#rc()
 
+" jslint
+Bundle 'basyura/jslint.vim'
+function! s:javascript_filetype_settings()
+    autocmd BufLeave      <buffer> call jslint#clear()
+    autocmd BufWritePost  <buffer> call jslint#check()
+    autocmd CursorMoved   <buffer> call jslint#message()
+endfunction
+autocmd FileType javascript call s:javascript_filetype_settings()
+
 " yanktmp http://www.vim.org/scripts/script.php?script_id=1598
 map <silent> sy :call YanktmpYank()<cr>
 map <silent> sp :call YanktmpPaste_p()<cr>
@@ -95,6 +104,7 @@ map <silent> sP :call YanktmpPaste_P()<cr>
 let g:yanktmp_file = '~/tmp/vim-yanktmp'
 
 " taglist.vim
+Bundle 'taglist-plus'
 let g:Tlist_Close_On_Select   = 1
 let g:Tlist_Display_Prototype = 1
 let g:Tlist_Use_Right_Window  = 1
