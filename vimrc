@@ -1,7 +1,28 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
+set title
+set ruler
+set number
+
 syntax on
+filetype plugin indent on
+
+" vundle
+set rtp+=~/.vim/vundle
+call vundle#rc()
+
+Bundle 'Shugo/nocomplcache'
+Bundle 'Shugo/unite.vim'
+Bundle 'thinca/vim-quickrun'
+Bundle 'thinca/vim-ref'
+Bundle 'othree/eregex.vim'
+Bundle 'petdance/vim-perl'
+Bundle 'hotchpotch/perldoc-vim'
+Bundle 'pangloss/vim-javascript'
+Bundle 'basyura/jslint.vim'
+Bundle 'mattn/zencoding-vim'
+Bundle 'taglist-plus'
 
 set showmatch
 set tabstop=4
@@ -12,12 +33,18 @@ set backspace=indent,eol,start
 set shiftwidth=4
 "set pastetoggle=<F11>
 
-set number
 set nowrapscan
 set incsearch
 set ignorecase
 set smartcase " search in ignore-case, unless the buffer starts UPPERs
+
 set hlsearch
+set showmatch
+set showmode
+
+set fileencoding=utf-8
+set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932
+
 
 
 " auto cd
@@ -29,7 +56,7 @@ nnoremap <Space>s. :<C-u>source $MYVIMRC<CR>
 " shortcut for :help
 nnoremap <C-i> :<C-u>help<Space>
 " show help aboutthe current word by :help
-nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
+nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><CR>
 
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
@@ -39,19 +66,20 @@ noremap k gk
 noremap gj j
 noremap gk k
 
-" move in wndows
-noremap <C-h> <C-w><C-h>
-noremap <C-j> <C-w><C-j>
-noremap <C-k> <C-w><C-k>
-noremap <C-l> <C-w><C-l>
+" vim windows
+noremap mh <C-w><C-h>
+noremap mj <C-w><C-j>
+noremap mk <C-w><C-k>
+noremap ml <C-w><C-l>
+noremap mv <C-w><C-v>
+noremap ms <C-w><C-h>
+noremap mm :q<CR>
 
 " shortcuts for timestamp
 inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
 
-set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932
 
 function!Trim()
     let s:cursor = getpos(".")
@@ -59,6 +87,7 @@ function!Trim()
     call setpos(".", s:cursor)
 endfunction
 autocmd! BufWritePre *.{pl,pm,t,psgi,c,xs,rb,py,txt,tx,html} call Trim()
+autocmd! BufWritePre *{vimrc,bashrc} call Trim()
 
 "perl settings
 augroup filetypedetect
@@ -70,7 +99,8 @@ augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
 
-"set clipboard=unnamed
+"set clipboard+=unnamed
+"set clipboard+=autoselect
 
 " highlighten the cursor line only if it's forcused
 set cursorline
@@ -80,16 +110,21 @@ augroup cch
     autocmd WinEnter,BufRead * set cursorline
 augroup END
 
-
+"yank and paste clipboard
+if has('mac') && !has('gui')
+  nnoremap <silent> <Space>y :.w !pbcopy<CR><CR>
+  vnoremap <silent> <Space>y :w !pbcopy<CR><CR>
+  nnoremap <silent> <Space>p :r !pbpaste<CR>
+  vnoremap <silent> <Space>p :r !pbpaste<CR>
+else
+  " GVim(Mac & Win)
+  noremap <Space>y "+y<CR>
+  noremap <Space>p "+p<CR>
+endif
 
 " for plugins
 
-" vundle
-set rtp+=~/.vim/vundle
-call vundle#rc()
-
 " jslint
-Bundle 'basyura/jslint.vim'
 function! s:javascript_filetype_settings()
     autocmd BufLeave      <buffer> call jslint#clear()
     autocmd BufWritePost  <buffer> call jslint#check()
@@ -97,16 +132,9 @@ function! s:javascript_filetype_settings()
 endfunction
 autocmd FileType javascript call s:javascript_filetype_settings()
 
-" yanktmp http://www.vim.org/scripts/script.php?script_id=1598
-map <silent> sy :call YanktmpYank()<cr>
-map <silent> sp :call YanktmpPaste_p()<cr>
-map <silent> sP :call YanktmpPaste_P()<cr>
-let g:yanktmp_file = '~/tmp/vim-yanktmp'
-
-" taglist.vim
-Bundle 'taglist-plus'
+" taglist
 let g:Tlist_Close_On_Select   = 1
 let g:Tlist_Display_Prototype = 1
 let g:Tlist_Use_Right_Window  = 1
-nnoremap ; :TlistToggle<Enter><C-w>l
+nnoremap ; :TlistToggle<CR><C-w><C-l>
 

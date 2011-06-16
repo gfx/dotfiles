@@ -5,8 +5,10 @@ alias l='ls'
 alias ll='ls -l'
 alias la='ls -a'
 
-alias g++="g++ -Wall -Wextra -g"
-alias gcc="gcc -Wall -Wextra -g"
+alias g++="ccache g++ -Wall -Wextra -g"
+alias c++="ccache c++ -Wall -Wextra -g"
+alias gcc="ccache gcc -Wall -Wextra -g"
+alias cc="ccache   cc -Wall -Wextra -g"
 
 
 function pm {
