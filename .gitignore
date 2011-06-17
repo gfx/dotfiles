@@ -1,5 +1,2 @@
-*.swp
-*~
-vundle/
 perldoc-complete/
-
+vundle/

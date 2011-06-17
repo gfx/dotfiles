@@ -43,7 +43,7 @@ set showmatch
 set showmode
 
 set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,iso-2022-jp,utf-8,cp932
+set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
 
 
 
