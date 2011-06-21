@@ -6,3 +6,6 @@ pod=.pl,.pm
 
 --type-set
 header=.h,.hpp,.hxx
+
+--smart-case
+
