@@ -31,7 +31,8 @@ set smartindent
 set autoindent
 set backspace=indent,eol,start
 set shiftwidth=4
-"set pastetoggle=<F11>
+set pastetoggle=<F11>
+set listchars=eol:$,tab=:>-
 
 set nowrapscan
 set incsearch
