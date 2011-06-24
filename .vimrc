@@ -23,6 +23,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'taglist-plus'
+Bundle 'current-func-info.vim'
 
 set showmatch
 set tabstop=4
@@ -32,7 +33,7 @@ set autoindent
 set backspace=indent,eol,start
 set shiftwidth=4
 set pastetoggle=<F11>
-set listchars=eol:$,tab=:>-
+"set listchars=eol:$,tab=:>-
 
 set nowrapscan
 set incsearch
@@ -104,12 +105,12 @@ au BufRead,BufNewFile Makefile set noexpandtab
 "set clipboard+=autoselect
 
 " highlighten the cursor line only if it's forcused
-set cursorline
-augroup cch
-    autocmd! cch
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
-augroup END
+"set cursorline
+"augroup cch
+"    autocmd! cch
+"    autocmd WinLeave * set nocursorline
+"    autocmd WinEnter,BufRead * set cursorline
+"augroup END
 
 "yank and paste clipboard
 if has('mac') && !has('gui')
@@ -138,4 +139,6 @@ let g:Tlist_Close_On_Select   = 1
 let g:Tlist_Display_Prototype = 1
 let g:Tlist_Use_Right_Window  = 1
 nnoremap ; :TlistToggle<CR><C-w><C-l>
+
+let &statusline = '[%{cfi#get_func_name()}()]'
 
