@@ -30,14 +30,6 @@ shopt -s histappend
 HISTSIZE=50000
 HISTFILESIZE=2000
 
-# share the history with terminals
-function share_history {
-    history -a # write the history list to the file
-    history -c # flush the history list
-    history -r # read the history list from the file
-}
-PROMPT_COMMAND='share_history'
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
