@@ -17,16 +17,26 @@ if [ -e /dev/cgroup ] ; then
     echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
 fi
 
+# HISTORY settings
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
+HISTIGNORE='?:??:rm *:\\rm *:r\\m *'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
+HISTSIZE=50000
 HISTFILESIZE=2000
+
+# share the history with terminals
+function share_history {
+    history -a # write the history list to the file
+    history -c # flush the history list
+    history -r # read the history list from the file
+}
+PROMPT_COMMAND='share_history'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
