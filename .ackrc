@@ -9,3 +9,6 @@ header=.h,.hpp,.hxx
 
 --smart-case
 
+--ignore-dir
+build
+
