@@ -17,18 +17,16 @@ if [ -e /dev/cgroup ] ; then
     echo "1" > /dev/cgroup/cpu/user/$$/notify_on_release
 fi
 
-# HISTORY settings
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
-HISTIGNORE='?:??:rm *:\\rm *:r\\m *'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=50000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -112,18 +110,25 @@ function proml {
     local LIGHT_GREEN="\[\033[1;32m\]"
     local       WHITE="\[\033[1;37m\]"
     local  LIGHT_GRAY="\[\033[0;37m\]"
+
+
+    PROMPT='\w $(git_branch) \u@\h';
+    TITLEBAR='\[\033]0;\w $(git_branch) \u@\h\007\]'
     case "$TERM" in
         xterm*)
-        TITLEBAR='\[\033]0;\w $(git_branch) \u@\h\007\]'
+            # do nothing
+        ;;
+        screen*)
+            # do nothing
         ;;
         *)
-        TITLEBAR=""
+            TITLEBAR=""
         ;;
     esac
 
-    PS1="$TITLEBAR$LIGHT_BLUE\w\$ $LIGHT_GRAY"
-    PS2='> '
-    PS4='+ '
+    PS1="$LIGHT_BLUE$PROMPT$TITLEBAR\n->> $LIGHT_GRAY"
+    PS2="$LIGHT_GREEN> $LIGHT_GRAY"
+    PS3="$LIGHT_RED+ $LIGHT_GRAY"
 }
 proml
 
@@ -134,6 +139,4 @@ case "`uname`" in
     CYGWIN*) source ~/.bash/cygwin.sh ;;
 esac
 
-
-title "$HOME"
 
