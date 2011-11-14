@@ -7,6 +7,9 @@ pod=.pl,.pm
 --type-set
 header=.h,.hpp,.hxx
 
+--type-set
+xcode=.xcconfig,pbxproj
+
 --smart-case
 
 --ignore-dir

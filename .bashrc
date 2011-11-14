@@ -10,7 +10,7 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
-# for performance
+# for performance (on Linux)
 if [ -e /dev/cgroup ] ; then
     mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
     echo $$ > /dev/cgroup/cpu/user/$$/tasks
@@ -85,12 +85,13 @@ if [ -s ~/.pythonbrew/etc/bashrc ] ; then
     source ~/.pythonbrew/etc/bashrc
 fi
 
-# make PATH unique
-export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$PATH"
-`
 
 export EDITOR='/usr/bin/vim'
-export PAGER='/usr/bin/less'
+export PAGER="`which vimpager`"
+if [ -z $PAGER ] ; then
+    export PAGER='/usr/bin/less'
+fi
+
 export LESS='-r'
 
 export PERL_CPANM_OPT='-q'
@@ -139,4 +140,8 @@ case "`uname`" in
     CYGWIN*) source ~/.bash/cygwin.sh ;;
 esac
 
+# make PATH unique
+export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$PATH"`
+
+# EOF
 

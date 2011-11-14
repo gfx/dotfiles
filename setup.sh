@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
 echo "setup.sh for $HOME"
 
-ln .bashrc       ~/.bashrc
-ln .bash_aliases ~/.bash_aliases
-mkdir ~/.bash
-    ln bash/linux.sh  ~/.bash/
-    ln bash/darwin.sh ~/.bash/
-    ln bash/cygwin.sh ~/.bash/
+ln -s "$PWD/.bashrc"       ~/.bashrc
+ln -s "$PWD/.bash_aliases" ~/.bash_aliases
 
-ln .vimrc        ~/.vimrc
-ln .ackrc        ~/.ackrc
-ln .perltidyrc   ~/.perltidyrc
-ln  gitignore    ~/.gitignore
-ln .tmux.conf    ~/.tmux.conf
+ln -s "$PWD/.bash" ~/.bash
 
-mkdir ~/bin
+ln -s "$PWD/.vimrc"        ~/.vimrc
+ln -s "$PWD/.ackrc"        ~/.ackrc
+ln -s "$PWD/.perltidyrc"   ~/.perltidyrc
+ln -s "$PWD/gitignore"     ~/.gitignore
+ln -s "$PWD/.tmux.conf"    ~/.tmux.conf
+
 git submodule init && git submodule update
-ln perldoc-complete/perldoc-complete ~/bin/
+
+mkdir -p ~/bin
+ln -s "$PWD/perldoc-complete/perldoc-complete" ~/bin/
+
+echo "done."
 

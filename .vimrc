@@ -80,14 +80,24 @@ inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
 
+" disable key recording
+noremap q <esc>
+
+" q for QuickRun
+noremap Q :QuickRun<CR>
 
 function!Trim()
     let s:cursor = getpos(".")
     %s/\s\+$//e
     call setpos(".", s:cursor)
 endfunction
-autocmd! BufWritePre *.{pl,pm,t,psgi,c,xs,rb,py,txt,tx,html} call Trim()
+autocmd! BufWritePre *.{sh,t,pl,pm,psgi,xs,rb,py} call Trim()
+autocmd! BufWritePre *.{c,hpp} call Trim()
+"autocmd! BufWritePre *.{cpp,m,mm,hpp,java} call Trim()
+autocmd! BufWritePre *.{txt,tx,tt,md,html,htm} call Trim()
 autocmd! BufWritePre *{vimrc,bashrc} call Trim()
+autocmd! BufWritePre Makefile call Trim()
+autocmd! BufWritePre README call Trim()
 
 "perl settings
 augroup filetypedetect
@@ -130,11 +140,14 @@ function! s:javascript_filetype_settings()
     autocmd BufWritePost  <buffer> call jslint#check()
     autocmd CursorMoved   <buffer> call jslint#message()
 endfunction
-autocmd FileType javascript call s:javascript_filetype_settings()
+" autocmd FileType javascript call s:javascript_filetype_settings()
 
 " taglist
 let g:Tlist_Close_On_Select   = 1
 let g:Tlist_Display_Prototype = 1
 let g:Tlist_Use_Right_Window  = 1
 nnoremap ; :TlistToggle<CR><C-w><C-l>
+
+" vimgrep
+set grepprg=ack\ -a
 

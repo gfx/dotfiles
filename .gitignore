@@ -1,2 +1,13 @@
-perldoc-complete/
-vundle/
+*~
+*.swp
+*.a
+*.o
+*.so
+*.p
+*.pyc
+.DS_Store
+.svn
+*.dSYM
+*.xcworkspace
+*.xcuserdata
+

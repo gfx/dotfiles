@@ -6,5 +6,12 @@ ANDROID_NDK="$HOME/android/ndk-r4b"
 export PATH="$ANDROID_NDK:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH"
 
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vim='env LANG=ja_JP.UTF-8 "$EDITOR" "$@"'
+alias vim='"$EDITOR" "$@"'
 
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
+
+#export LC_ALL=C
+export LANG=ja_JP.UTF-8
+
+export PATH="$HOME/flex_sdk_4.5.1/bin:$PATH"
