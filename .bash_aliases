@@ -6,10 +6,12 @@ alias ll='ls -l'
 alias la='ls -a'
 
 alias g++="ccache g++ -Wall -Wextra -g"
-alias c++="ccache c++ -Wall -Wextra -g"
 alias gcc="ccache gcc -Wall -Wextra -g"
-alias cc="ccache   cc -Wall -Wextra -g"
 
+alias cc="ccache clnag -Wall -Wextra -g"
+
+alias pad="plackup -s Starlet -MPlack::App::Directory \
+           -e 'Plack::App::Directory->new->to_app'"
 
 function pm {
     PERLDOC_PAGER="$EDITOR" perldoc -m "$1" ;
@@ -30,6 +32,4 @@ function pm-ack { # pm-ack $pettern $module
 complete -C perldoc-complete -o nospace -o default pm
 complete -C perldoc-complete -o nospace -o default pm-version
 complete -C perldoc-complete -o nospace -o default pm-ack
-
-
 

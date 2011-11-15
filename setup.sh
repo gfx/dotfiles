@@ -9,13 +9,16 @@ ln -s "$PWD/.bash" ~/.bash
 ln -s "$PWD/.vimrc"        ~/.vimrc
 ln -s "$PWD/.ackrc"        ~/.ackrc
 ln -s "$PWD/.perltidyrc"   ~/.perltidyrc
-ln -s "$PWD/gitignore"     ~/.gitignore
+ln -s "$PWD/.gitignore"    ~/.gitignore
+ln -s "$PWD/.gitconfig"    ~/.gitconfig
 ln -s "$PWD/.tmux.conf"    ~/.tmux.conf
 
 git submodule init && git submodule update
 
 mkdir -p ~/bin
 ln -s "$PWD/perldoc-complete/perldoc-complete" ~/bin/
+
+git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 echo "done."
 
