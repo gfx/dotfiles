@@ -2,8 +2,8 @@
 *.swp
 *.a
 *.o
+*.out
 *.so
-*.p
 *.pyc
 .DS_Store
 .svn

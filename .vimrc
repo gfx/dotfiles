@@ -12,8 +12,8 @@ filetype plugin indent on
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-Bundle 'Shugo/nocomplcache'
-Bundle 'Shugo/unite.vim'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'othree/eregex.vim'
@@ -99,11 +99,10 @@ autocmd! BufWritePre *{vimrc,bashrc} call Trim()
 autocmd! BufWritePre Makefile call Trim()
 autocmd! BufWritePre README call Trim()
 
-"perl settings
+"filetype settings
 augroup filetypedetect
     autocmd! BufNewFile,BufRead *.t    setf perl
     autocmd! BufNewFile,BufRead *.psgi setf perl
-    autocmd! BufNewFile,BufRead *.inc  setf xs
     autocmd! BufNewFile,BufRead *.ejs  setf html
 augroup END
 
@@ -133,6 +132,9 @@ else
 endif
 
 " for plugins
+
+" neocompletecache
+let g:neocomplcache_enable_at_startup = 1
 
 " jslint
 function! s:javascript_filetype_settings()

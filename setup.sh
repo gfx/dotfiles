@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 echo "setup.sh for $HOME"
 
-ln -s "$PWD/.bashrc"       ~/.bashrc
-ln -s "$PWD/.bash_aliases" ~/.bash_aliases
+ln -fs "$PWD/.bashrc"       ~/.bashrc
+ln -fs "$PWD/.bash_aliases" ~/.bash_aliases
+ln -fs "$PWD/.bash" ~/.bash
 
-ln -s "$PWD/.bash" ~/.bash
-
-ln -s "$PWD/.vimrc"        ~/.vimrc
-ln -s "$PWD/.ackrc"        ~/.ackrc
-ln -s "$PWD/.perltidyrc"   ~/.perltidyrc
-ln -s "$PWD/.gitignore"    ~/.gitignore
-ln -s "$PWD/.gitconfig"    ~/.gitconfig
-ln -s "$PWD/.tmux.conf"    ~/.tmux.conf
+ln -fs "$PWD/.vimrc"        ~/.vimrc
+ln -fs "$PWD/.ackrc"        ~/.ackrc
+ln -fs "$PWD/.perltidyrc"   ~/.perltidyrc
+ln -fs "$PWD/.gitignore_global"    ~/.gitignore_global
+ln -fs "$PWD/.gitconfig"    ~/.gitconfig
+ln -fs "$PWD/.tmux.conf"    ~/.tmux.conf
 
 git submodule init && git submodule update
 
 mkdir -p ~/bin
-ln -s "$PWD/perldoc-complete/perldoc-complete" ~/bin/
+ln -fs "$PWD/perldoc-complete/perldoc-complete" ~/bin/
 
-git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+mkdir -p ~/.vim/bundle
+ln -fs "$PWD/vundle" ~/.vim/bundle/vundle
 
 echo "done."
 

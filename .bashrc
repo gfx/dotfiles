@@ -40,7 +40,7 @@ color_prompt=yes
 export PS1='\w\$ '
 
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
+if [ -x `which dircolors` ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
 
@@ -87,12 +87,13 @@ fi
 
 
 export EDITOR='/usr/bin/vim'
-export PAGER="`which vimpager`"
-if [ -z $PAGER ] ; then
-    export PAGER='/usr/bin/less'
-fi
+export PAGER='/usr/bin/less'
+#export PAGER="`which vimpager`"
+#if [ -z $PAGER ] ; then
+#    export PAGER='/usr/bin/less'
+#fi
 
-export LESS='-r'
+export LESS='-r -I' # --raw-control-chars and -IGNORE-CASE
 
 export PERL_CPANM_OPT='-q'
 
