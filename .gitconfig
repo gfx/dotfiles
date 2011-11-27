@@ -2,31 +2,33 @@
     name = Fuji, Goro
     email = fuji.goro@dena.jp
 [color]
-ui = auto 
+    ui = auto 
 [core]
-whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-excludesfile = /Users/fuji.goro/.gitignore_global
+    whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = /Users/fuji.goro/.gitignore_global
 [alias]
-st = status
-s = status
-t = status
-ci = commit
-br = branch
-co = checkout
-lg = log -p --stat
-df = diff
-dif = diff
-iff = diff
-ad = add
-d=diff --stat
-di=diff
-pr = pull --rebase
-tree = log --graph --pretty=oneline --abbrev-commit --decorate
+    st = status
+    s = status
+    t = status
+    ci = commit
+    br = branch
+    co = checkout
+    lg = log -p --stat
+    df = diff
+    dif = diff
+    iff = diff
+    ad = add
+    d=diff --stat
+    di=diff
+    pr = pull --rebase
+    tree = log --graph --pretty=oneline --abbrev-commit --decorate
 [rerere]
-enabled = true
+    enabled = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[push]
+	default = upstream
