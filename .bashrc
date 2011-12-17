@@ -10,6 +10,8 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
+export LC_ALL=C
+
 # for performance (on Linux)
 if [ -e /dev/cgroup ] ; then
     mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
@@ -144,5 +146,6 @@ esac
 # make PATH unique
 export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$PATH"`
 
+title $PWD
 # EOF
 

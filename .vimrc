@@ -1,10 +1,6 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
-set title
-set ruler
-set number
-
 syntax on
 filetype plugin indent on
 
@@ -23,6 +19,10 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'taglist-plus'
+
+set title
+set ruler
+set number
 
 set showmatch
 set tabstop=4
@@ -44,7 +44,6 @@ set showmode
 
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
-
 
 
 " auto cd
@@ -108,8 +107,8 @@ augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
 
-"set clipboard+=unnamed
-"set clipboard+=autoselect
+set clipboard+=unnamed
+set clipboard+=autoselect
 
 " highlighten the cursor line only if it's forcused
 set cursorline
