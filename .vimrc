@@ -18,7 +18,7 @@ Bundle 'hotchpotch/perldoc-vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
-Bundle 'taglist-plus'
+Bundle 'Tagbar'
 
 set title
 set ruler
@@ -90,19 +90,28 @@ function!Trim()
     %s/\s\+$//e
     call setpos(".", s:cursor)
 endfunction
+
 autocmd! BufWritePre *.{sh,t,pl,pm,psgi,xs,rb,py} call Trim()
 autocmd! BufWritePre *.{c,hpp} call Trim()
 "autocmd! BufWritePre *.{cpp,m,mm,hpp,java} call Trim()
 autocmd! BufWritePre *.{txt,tx,tt,md,html,htm} call Trim()
 autocmd! BufWritePre *{vimrc,bashrc} call Trim()
 autocmd! BufWritePre Makefile call Trim()
+autocmd! BufWritePre Rakefile call Trim()
 autocmd! BufWritePre README call Trim()
+autocmd! BufWritePre *.{xml} call Trim()
+autocmd! BufWritePre *.pegjs call Trim()
+autocmd! BufWritePre *.dart call Trim()
 
 "filetype settings
 augroup filetypedetect
     autocmd! BufNewFile,BufRead *.t    setf perl
     autocmd! BufNewFile,BufRead *.psgi setf perl
+    autocmd! BufNewFile,BufRead *.jake setf javascript
+    autocmd! BufNewFile,BufRead *.as   setf javascript
     autocmd! BufNewFile,BufRead *.ejs  setf html
+    autocmd! BufNewFile,BufRead *.md   setf markdown
+    autocmd! BufNewFile,BufRead *.dart setf dart
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
@@ -143,11 +152,9 @@ function! s:javascript_filetype_settings()
 endfunction
 " autocmd FileType javascript call s:javascript_filetype_settings()
 
-" taglist
-let g:Tlist_Close_On_Select   = 1
-let g:Tlist_Display_Prototype = 1
-let g:Tlist_Use_Right_Window  = 1
-nnoremap ; :TlistToggle<CR><C-w><C-l>
+" outline support
+let g:tagbar_sort = 0
+nnoremap ; :TagbarToggle<CR><C-w><C-l>
 
 " vimgrep
 set grepprg=ack\ -a
