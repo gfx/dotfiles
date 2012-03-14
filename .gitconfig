@@ -31,4 +31,7 @@
 [push]
 	default = upstream
 [diff]
-	ignoreSubmodules = all
+    ignoreSubmodules = all
+[diff "zip"]
+    textconv = unzip -c -a
+

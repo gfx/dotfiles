@@ -10,7 +10,6 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
-export LC_ALL=C
 
 # for performance (on Linux)
 if [ -e /dev/cgroup ] ; then
@@ -116,8 +115,8 @@ function proml {
     local  LIGHT_GRAY="\[\033[0;37m\]"
 
 
-    PROMPT='\w $(git_branch) \u@\h';
-    TITLEBAR='\[\033]0;\w $(git_branch) \u@\h\007\]'
+    PROMPT='\w$(__git_ps1) \u@\h';
+    TITLEBAR='\[\033]0;\w$(__git_ps1) \u@\h\007\]'
     case "$TERM" in
         xterm*)
             # do nothing
