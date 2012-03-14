@@ -9,7 +9,6 @@ ln -fs "$PWD/.vimrc"        ~/.vimrc
 ln -fs "$PWD/.ackrc"        ~/.ackrc
 ln -fs "$PWD/.perltidyrc"   ~/.perltidyrc
 ln -fs "$PWD/.gitignore_global"    ~/.gitignore_global
-ln -fs "$PWD/.gitconfig"    ~/.gitconfig
 ln -fs "$PWD/.tmux.conf"    ~/.tmux.conf
 
 git submodule init && git submodule update
