@@ -5,10 +5,19 @@ perl=.t,.psgi
 pod=.pl,.pm
 
 --type-set
+js=.js,.jsx,.jake
+
+--type-set
 header=.h,.hpp,.hxx
 
 --type-set
+dart=.dart
+
+--type-set
 xcode=.xcconfig,pbxproj
+
+--type-set
+eclipse=properties,.project,.prefs,.launch
 
 --smart-case
 
