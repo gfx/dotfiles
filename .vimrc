@@ -117,7 +117,7 @@ augroup END
 au BufRead,BufNewFile Makefile set noexpandtab
 
 set clipboard+=unnamed
-set clipboard+=autoselect
+"set clipboard+=autoselect
 
 " highlighten the cursor line only if it's forcused
 set cursorline
@@ -138,6 +138,10 @@ else
   noremap <Space>y "+y<CR>
   noremap <Space>p "+p<CR>
 endif
+
+" show invisible chars
+set list
+set listchars=tab:>\ ,eol:$
 
 " for plugins
 
