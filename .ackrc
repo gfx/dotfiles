@@ -5,10 +5,16 @@ perl=.t,.psgi
 pod=.pl,.pm
 
 --type-set
-header=.h,.hpp,.hxx
+header=.h,.hpp,.hxx,.ph
 
 --type-set
 xcode=.xcconfig,pbxproj
+
+--type-set
+rust=.rs
+
+--type-set
+dart=.dart
 
 --smart-case
 

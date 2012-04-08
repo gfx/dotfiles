@@ -71,6 +71,8 @@ complete -C perldoc-complete -o nospace -o default perldoc
 
 PATH="~/.vim/bin:$PATH"
 PATH="~/bleadperl/bin:~/ancientperl/bin:$PATH"
+PATH="~/dev/depot_tools:$PATH"
+
 export PATH
 
 if [ -s ~/perl5/perlbrew/etc/bashrc ] ; then
