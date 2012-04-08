@@ -1,10 +1,6 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
-set title
-set ruler
-set number
-
 syntax on
 filetype plugin indent on
 
@@ -20,9 +16,14 @@ Bundle 'othree/eregex.vim'
 Bundle 'petdance/vim-perl'
 Bundle 'hotchpotch/perldoc-vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'bartekd/vim-dart'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Tagbar'
+
+set title
+set ruler
+set number
 
 set showmatch
 set tabstop=4
@@ -44,7 +45,6 @@ set showmode
 
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
-
 
 
 " auto cd
@@ -91,27 +91,38 @@ function!Trim()
     %s/\s\+$//e
     call setpos(".", s:cursor)
 endfunction
-autocmd! BufWritePre *.{js,sh,t,pl,pm,psgi,xs,rb,py} call Trim()
-autocmd! BufWritePre *.{c,cpp,hpp} call Trim()
+
+autocmd! BufWritePre *.{sh,t,pl,pm,psgi,xs,rb,py} call Trim()
+autocmd! BufWritePre *.{c,cxx,hxx,hpp} call Trim()
+
+autocmd! BufWritePre *.{jsx} call Trim()
+"autocmd! BufWritePre *.{js} call Trim()
 "autocmd! BufWritePre *.{cpp,m,mm,hpp,java} call Trim()
-autocmd! BufWritePre *.{txt,tx,tt,md,html,htm} call Trim()
-autocmd! BufWritePre *{vimrc,bashrc} call Trim()
+autocmd! BufWritePre *.{tt,html,htm} call Trim()
+autocmd! BufWritePre *rc call Trim()
 autocmd! BufWritePre Makefile call Trim()
+autocmd! BufWritePre Rakefile call Trim()
 autocmd! BufWritePre README call Trim()
-autocmd! BufWritePre *.dart call Trim()
+autocmd! BufWritePre *.xml call Trim()
+autocmd! BufWritePre *.{md,txt} call Trim()
+autocmd! BufWritePre *.pegjs call Trim()
 
 "filetype settings
 augroup filetypedetect
     autocmd! BufNewFile,BufRead *.t    setf perl
     autocmd! BufNewFile,BufRead *.psgi setf perl
     autocmd! BufNewFile,BufRead *.ph   setf perl
+    autocmd! BufNewFile,BufRead *.jake setf javascript
+    autocmd! BufNewFile,BufRead *.as   setf javascript
     autocmd! BufNewFile,BufRead *.ejs  setf html
+    autocmd! BufNewFile,BufRead *.md   setf markdown
+    autocmd! BufNewFile,BufRead *.dart setf dart
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
 
 set clipboard+=unnamed
-set clipboard+=autoselect
+"set clipboard+=autoselect
 
 " highlighten the cursor line only if it's forcused
 set cursorline
@@ -133,6 +144,10 @@ else
   noremap <Space>p "+p<CR>
 endif
 
+" show invisible chars
+set list
+set listchars=tab:>\ ,eol:$
+
 " for plugins
 
 " neocompletecache
@@ -146,7 +161,7 @@ function! s:javascript_filetype_settings()
 endfunction
 " autocmd FileType javascript call s:javascript_filetype_settings()
 
-" tagbar
+" outline support
 let g:tagbar_sort = 0
 nnoremap ; :TagbarToggle<CR><C-w><C-l>
 

@@ -10,6 +10,7 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
+
 # for performance (on Linux)
 if [ -e /dev/cgroup ] ; then
     mkdir -p -m 0700 /dev/cgroup/cpu/user/$$ > /dev/null 2>&1
@@ -116,8 +117,8 @@ function proml {
     local  LIGHT_GRAY="\[\033[0;37m\]"
 
 
-    PROMPT='\w $(git_branch) \u@\h';
-    TITLEBAR='\[\033]0;\w $(git_branch) \u@\h\007\]'
+    PROMPT='\w$(__git_ps1) \u@\h';
+    TITLEBAR='\[\033]0;\w$(__git_ps1) \u@\h\007\]'
     case "$TERM" in
         xterm*)
             # do nothing
@@ -146,5 +147,6 @@ esac
 # make PATH unique
 export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$PATH"`
 
+title $PWD
 # EOF
 
