@@ -4,6 +4,7 @@ set nocompatible " this is vim, not vi
 syntax on
 filetype plugin indent on
 
+
 " vundle
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
@@ -113,13 +114,16 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.psgi setf perl
     autocmd! BufNewFile,BufRead *.ph   setf perl
     autocmd! BufNewFile,BufRead *.jake setf javascript
-    autocmd! BufNewFile,BufRead *.as   setf javascript
     autocmd! BufNewFile,BufRead *.ejs  setf html
+    autocmd! BufNewFile,BufRead *.tt   setf html
     autocmd! BufNewFile,BufRead *.md   setf markdown
     autocmd! BufNewFile,BufRead *.dart setf dart
+    autocmd! BufNewFile,BufRead *.jsx  setf jsx
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
+au BufRead,BufNewFile *.jsx    set noexpandtab
+au BufRead,BufNewFile *.js     set noexpandtab
 
 set clipboard+=unnamed
 "set clipboard+=autoselect
@@ -153,13 +157,24 @@ set listchars=tab:>\ ,eol:$
 " neocompletecache
 let g:neocomplcache_enable_at_startup = 1
 
-" jslint
+" js setting
 function! s:javascript_filetype_settings()
+    set noexpandtab
     autocmd BufLeave      <buffer> call jslint#clear()
     autocmd BufWritePost  <buffer> call jslint#check()
     autocmd CursorMoved   <buffer> call jslint#message()
 endfunction
-" autocmd FileType javascript call s:javascript_filetype_settings()
+autocmd FileType javascript call s:javascript_filetype_settings()
+
+" html setting
+function! s:html_filetype_settings()
+    set tabstop=2
+    set shiftwidth=2
+endfunction
+autocmd FileType html call s:html_filetype_settings()
+
+" document setting
+autocmd FileType md set spell
 
 " outline support
 let g:tagbar_sort = 0
@@ -168,7 +183,14 @@ nnoremap ; :TagbarToggle<CR><C-w><C-l>
 " vimgrep
 set grepprg=ack\ -a
 
+" off the IME by the escape key
+"inoremap <ESC> <ESC>:set iminsert=0<CR>
 
-" rust
-set rtp+=/Users/gfx/repo/rust/src/etc/vim
+" jsx
+set rtp+=~/repo/jsx.vim
+let g:quickrun_config = {}
+let g:quickrun_config.jsx = {
+          \ 'command': 'jsx',
+          \ 'exec': ['%c --run %s']
+          \ }
 

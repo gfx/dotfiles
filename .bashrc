@@ -69,11 +69,11 @@ fi
 complete -C perldoc-complete -o nospace -o default perldoc
 
 #PATH="/usr/local/mysql/bin:$PATH"
+#PATH="~/bleadperl/bin:~/ancientperl/bin:$PATH"
 
 PATH="~/.vim/bin:$PATH"
-PATH="~/bleadperl/bin:~/ancientperl/bin:$PATH"
 PATH="~/dev/depot_tools:$PATH"
-
+PATH="~/.nodebrew/current/bin:$PATH"
 export PATH
 
 if [ -s ~/perl5/perlbrew/etc/bashrc ] ; then
