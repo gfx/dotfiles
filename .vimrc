@@ -1,13 +1,14 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
+" vundle
+set rtp+=~/repo/jsx.vim
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
 syntax on
 filetype plugin indent on
 
-
-" vundle
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
 
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
@@ -118,7 +119,6 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.tt   setf html
     autocmd! BufNewFile,BufRead *.md   setf markdown
     autocmd! BufNewFile,BufRead *.dart setf dart
-    autocmd! BufNewFile,BufRead *.jsx  setf jsx
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
@@ -187,7 +187,6 @@ set grepprg=ack\ -a
 "inoremap <ESC> <ESC>:set iminsert=0<CR>
 
 " jsx
-set rtp+=~/repo/jsx.vim
 let g:quickrun_config = {}
 let g:quickrun_config.jsx = {
           \ 'command': 'jsx',
