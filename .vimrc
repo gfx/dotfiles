@@ -1,13 +1,14 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
-syntax on
-filetype plugin indent on
-
+set rtp+=~/repo/jsx.vim
 
 " vundle
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
+
+syntax on
+filetype plugin indent on
 
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
@@ -16,7 +17,7 @@ Bundle 'thinca/vim-ref'
 Bundle 'othree/eregex.vim'
 Bundle 'petdance/vim-perl'
 Bundle 'hotchpotch/perldoc-vim'
-Bundle 'pangloss/vim-javascript'
+"Bundle 'pangloss/vim-javascript'
 Bundle 'bartekd/vim-dart'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
@@ -187,7 +188,6 @@ set grepprg=ack\ -a
 "inoremap <ESC> <ESC>:set iminsert=0<CR>
 
 " jsx
-set rtp+=~/repo/jsx.vim
 let g:quickrun_config = {}
 let g:quickrun_config.jsx = {
           \ 'command': 'jsx',
