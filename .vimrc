@@ -10,6 +10,7 @@ call vundle#rc()
 syntax on
 filetype plugin indent on
 
+
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-quickrun'
@@ -119,7 +120,6 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.tt   setf html
     autocmd! BufNewFile,BufRead *.md   setf markdown
     autocmd! BufNewFile,BufRead *.dart setf dart
-    autocmd! BufNewFile,BufRead *.jsx  setf jsx
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
