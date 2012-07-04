@@ -73,7 +73,6 @@ complete -C perldoc-complete -o nospace -o default perldoc
 
 PATH="~/.vim/bin:$PATH"
 PATH="~/dev/depot_tools:$PATH"
-PATH="~/.nodebrew/current/bin:$PATH"
 export PATH
 
 if [ -s ~/perl5/perlbrew/etc/bashrc ] ; then
@@ -98,7 +97,7 @@ export PAGER='/usr/bin/less'
 
 export LESS='-r -I' # --raw-control-chars and -IGNORE-CASE
 
-export PERL_CPANM_OPT='-q'
+export PERL_CPANM_OPT='-nq'
 
 # ------------------------------------------------------------------------------#
 
