@@ -1,18 +1,20 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
-set rtp+=~/repo/jsx.vim
 
 " vundle
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
+set rtp+=~/repo/jsx.vim
+
 syntax on
 filetype plugin indent on
 
-
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc'
+Bundle 'Shougo/vimshell'
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
 Bundle 'othree/eregex.vim'
@@ -161,9 +163,9 @@ let g:neocomplcache_enable_at_startup = 1
 " js setting
 function! s:javascript_filetype_settings()
     set noexpandtab
-    autocmd BufLeave      <buffer> call jslint#clear()
-    autocmd BufWritePost  <buffer> call jslint#check()
-    autocmd CursorMoved   <buffer> call jslint#message()
+    "autocmd BufLeave      <buffer> call jslint#clear()
+    "autocmd BufWritePost  <buffer> call jslint#check()
+    "autocmd CursorMoved   <buffer> call jslint#message()
 endfunction
 autocmd FileType javascript call s:javascript_filetype_settings()
 
@@ -193,4 +195,7 @@ let g:quickrun_config.jsx = {
           \ 'command': 'jsx',
           \ 'exec': ['%c --run %s']
           \ }
+
+" unite.vim
+nnoremap f :<C-u>Unite buffer file_mru<CR>
 
