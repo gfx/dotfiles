@@ -2,7 +2,7 @@
     name = Fuji, Goro
     email = fuji.goro@dena.jp
 [color]
-    ui = auto 
+    ui = auto
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = /Users/fuji.goro/.gitignore_global

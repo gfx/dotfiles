@@ -7,6 +7,7 @@ if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
 fi
 
 export PATH="/Applications/dart/sdk/bin:$PATH"
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
 ANDROID_SDK=`brew --prefix android-sdk`
 ANDROID_NDK=`brew --prefix android-ndk`
