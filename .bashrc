@@ -10,6 +10,8 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
+export PATH="~/bin:/usr/local/bin:$PATH"
+
 # OS specific resources
 case "`uname`" in
     Linux)   source ~/.bash/linux.sh ;;
