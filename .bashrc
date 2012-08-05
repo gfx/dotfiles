@@ -10,7 +10,7 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
-export PATH="~/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH"
 
 # OS specific resources
 case "`uname`" in
