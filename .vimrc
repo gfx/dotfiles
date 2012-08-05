@@ -103,7 +103,7 @@ autocmd! BufWritePre *.{c,cxx,hxx,hpp} call Trim()
 autocmd! BufWritePre *.{jsx} call Trim()
 "autocmd! BufWritePre *.{js} call Trim()
 "autocmd! BufWritePre *.{cpp,m,mm,hpp,java} call Trim()
-autocmd! BufWritePre *.{tt,html,htm} call Trim()
+autocmd! BufWritePre *.{tt,mt,html,htm} call Trim()
 autocmd! BufWritePre *rc call Trim()
 autocmd! BufWritePre Makefile call Trim()
 autocmd! BufWritePre Rakefile call Trim()
@@ -119,7 +119,7 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.ph   setf perl
     autocmd! BufNewFile,BufRead *.jake setf javascript
     autocmd! BufNewFile,BufRead *.ejs  setf html
-    autocmd! BufNewFile,BufRead *.tt   setf html
+    autocmd! BufNewFile,BufRead *.{tt,mt}   setf html
     autocmd! BufNewFile,BufRead *.md   setf markdown
     autocmd! BufNewFile,BufRead *.dart setf dart
 augroup END
@@ -193,7 +193,8 @@ set grepprg=ack\ -a
 let g:quickrun_config = {}
 let g:quickrun_config.jsx = {
           \ 'command': 'jsx',
-          \ 'exec': ['%c --run %s']
+          \ 'exec': ['%c --run %s'],
+          \ 'quickfix/errorformat': '[%f:%l] %m'
           \ }
 
 " unite.vim
