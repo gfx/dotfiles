@@ -20,6 +20,7 @@
     d=diff --stat
     pr = pull --rebase
     tree = log --graph --pretty=oneline --abbrev-commit --decorate
+    clone = --recurse-submodules
 [rerere]
     enabled = true
 [difftool "sourcetree"]

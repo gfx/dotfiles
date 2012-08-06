@@ -10,7 +10,10 @@ function title {
 }
 title "reading ~/.bashrc ..."
 
-export PATH="$HOME/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH"
+PATH="$HOME/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH"
+PATH="~/.vim/bin:$PATH"
+PATH="~/dev/depot_tools:$PATH"
+export PATH
 
 # OS specific resources
 case "`uname`" in
@@ -69,12 +72,6 @@ fi
 
 complete -C perldoc-complete -o nospace -o default perldoc
 
-#PATH="/usr/local/mysql/bin:$PATH"
-#PATH="~/bleadperl/bin:~/ancientperl/bin:$PATH"
-
-PATH="~/.vim/bin:$PATH"
-PATH="~/dev/depot_tools:$PATH"
-export PATH
 
 if [ -s ~/perl5/perlbrew/etc/bashrc ] ; then
     source ~/perl5/perlbrew/etc/bashrc
@@ -88,6 +85,7 @@ if [ -s ~/.pythonbrew/etc/bashrc ] ; then
     source ~/.pythonbrew/etc/bashrc
 fi
 
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 export EDITOR='/usr/bin/vim'
 export PAGER='/usr/bin/less'

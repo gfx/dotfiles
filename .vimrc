@@ -11,12 +11,14 @@ set rtp+=~/repo/jsx.vim
 syntax on
 filetype plugin indent on
 
+
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'thinca/vim-quickrun'
 Bundle 'thinca/vim-ref'
+Bundle 'thinca/vim-logcat'
 Bundle 'othree/eregex.vim'
 Bundle 'petdance/vim-perl'
 Bundle 'hotchpotch/perldoc-vim'
@@ -198,5 +200,5 @@ let g:quickrun_config.jsx = {
           \ }
 
 " unite.vim
-nnoremap f :<C-u>Unite buffer file_mru<CR>
+nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
 
