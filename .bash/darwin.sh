@@ -12,8 +12,9 @@ export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 ANDROID_SDK=`brew --prefix android-sdk`
 ANDROID_NDK=`brew --prefix android-ndk`
 
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vim='"$EDITOR" "$@"'
+export PATH="/Applications/MacVim.app/Contents/MacOS/:$PATH"
+
+export EDITOR="`which vim`"
 
 export LANG=ja_JP.UTF-8
 
