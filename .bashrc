@@ -115,7 +115,7 @@ function proml {
     local  LIGHT_GRAY="\[\033[0;37m\]"
 
 
-    PROMPT='\w$(__git_ps1) \u@\h';
+    PROMPT='\u@\h \w$(__git_ps1)';
     TITLEBAR='\[\033]0;\w$(__git_ps1) \u@\h\007\]'
     case "$TERM" in
         xterm*)
