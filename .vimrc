@@ -13,7 +13,7 @@ filetype plugin indent on
 
 
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
+"Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'thinca/vim-quickrun'
@@ -28,6 +28,7 @@ Bundle 'cocoa.vim'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Tagbar'
+Bundle 'The-NERD-tree'
 
 set title
 set ruler
@@ -200,6 +201,10 @@ let g:quickrun_config.jsx = {
           \ 'quickfix/errorformat': '[%f:%l] %m'
           \ }
 
+" filer
+noremap f :NERDTreeToggle<CR>
+
 " unite.vim
-nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
+" nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
+
 
