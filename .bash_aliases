@@ -5,11 +5,6 @@ alias l='ls'
 alias ll='ls -l'
 alias la='ls -a'
 
-alias g++="ccache g++ -Wall -Wextra -g"
-alias gcc="ccache gcc -Wall -Wextra -g"
-
-alias cc="ccache clnag -Wall -Wextra -g"
-
 alias pad="plackup -s Starlet -MPlack::App::Directory \
            -e 'Plack::App::Directory->new->to_app'"
 
