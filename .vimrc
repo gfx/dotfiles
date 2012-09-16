@@ -13,7 +13,7 @@ filetype plugin indent on
 
 
 Bundle 'Shougo/neocomplcache'
-"Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc'
 Bundle 'Shougo/vimshell'
 Bundle 'thinca/vim-quickrun'
@@ -25,10 +25,13 @@ Bundle 'hotchpotch/perldoc-vim'
 "Bundle 'pangloss/vim-javascript'
 Bundle 'bartekd/vim-dart'
 Bundle 'cocoa.vim'
+Bundle 'clang-complete'
+Bundle 'VimDebug'
 Bundle 'basyura/jslint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Tagbar'
 Bundle 'The-NERD-tree'
+Bundle 'errormarker.vim'
 
 set title
 set ruler
@@ -198,8 +201,20 @@ let g:quickrun_config = {}
 let g:quickrun_config.jsx = {
           \ 'command': 'jsx',
           \ 'exec': ['%c --run %s'],
-          \ 'quickfix/errorformat': '[%f:%l] %m'
+          \ 'quickfix/errorformat': '[%f:%l:%v] %m'
           \ }
+
+if !exists("g:jsx_compiler_auto_make")
+    let g:jsx_compiler_auto_make = 1
+    autocmd! BufWritePost *.jsx silent make | redraw!
+endif
+
+if !exists("g:neocomplcache_force_omni_patterns")
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+
+" . call omin completion
+let g:neocomplcache_force_omni_patterns.jsx = '\.'
 
 " filer
 noremap f :NERDTreeToggle<CR>
