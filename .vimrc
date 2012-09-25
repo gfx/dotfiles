@@ -217,7 +217,9 @@ endif
 let g:neocomplcache_force_omni_patterns.jsx = '\.'
 
 " filer
+let NERDTreeWinSize=24
 noremap f :NERDTreeToggle<CR>
+
 
 " unite.vim
 " nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
