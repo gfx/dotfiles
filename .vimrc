@@ -164,9 +164,6 @@ set listchars=tab:>\ ,eol:$
 
 " for plugins
 
-" neocompletecache
-let g:neocomplcache_enable_at_startup = 1
-
 " js setting
 function! s:javascript_filetype_settings()
     set noexpandtab
@@ -209,12 +206,30 @@ if !exists("g:jsx_compiler_auto_make")
     autocmd! BufWritePost *.jsx silent make | redraw!
 endif
 
+" neocompletecache and omni completion
+
+let g:neocomplcache_enable_at_startup = 1
+
 if !exists("g:neocomplcache_force_omni_patterns")
     let g:neocomplcache_force_omni_patterns = {}
 endif
 
 " . call omin completion
 let g:neocomplcache_force_omni_patterns.jsx = '\.'
+
+" with clang-completion (see neocomplecache FAQ)
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_force_omni_patterns.c =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.objc =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.objcpp =
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
 
 " filer
 let NERDTreeWinSize=24
