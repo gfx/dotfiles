@@ -125,6 +125,7 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.psgi setf perl
     autocmd! BufNewFile,BufRead *.ph   setf perl
     autocmd! BufNewFile,BufRead *.jake setf javascript
+    autocmd! BufNewFile,BufRead *.ts   setf javascript
     autocmd! BufNewFile,BufRead *.ejs  setf html
     autocmd! BufNewFile,BufRead *.{tt,mt}   setf html
     autocmd! BufNewFile,BufRead *.md   setf markdown

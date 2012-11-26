@@ -1,11 +1,14 @@
 --type-set
+markdown=.md,.mkdn,.markdown
+
+--type-set
 perl=.t,.psgi
 
 --type-set
 pod=.pl,.pm
 
 --type-set
-js=.js,.jsx,.jake
+js=.js,.jsx,.jake,.ts
 
 --type-set
 header=.h,.hpp,.hxx,.ph
