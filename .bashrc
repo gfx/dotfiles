@@ -1,9 +1,13 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-if [ -f /etc/bashrc ]; then
-  source /etc/bashrc
-fi
+function sourceif {
+	if [ -f "$1" ]; then
+		source "$1"
+	fi
+}
+
+sourceif /etc/bashrc
 
 function title {
     echo -ne "\033]0;${1}\007"
@@ -17,9 +21,9 @@ export PATH
 
 # OS specific resources
 case "`uname`" in
-    Linux)   source ~/.bash/linux.sh ;;
-    Darwin)  source ~/.bash/darwin.sh ;;
-    CYGWIN*) source ~/.bash/cygwin.sh ;;
+    Linux)   sourceif ~/.bash/linux.sh  ;;
+    Darwin)  sourceif ~/.bash/darwin.sh ;;
+    CYGWIN*) sourceif ~/.bash/cygwin.sh ;;
 esac
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -30,8 +34,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -59,31 +63,20 @@ fi
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
-fi
+sourceif ~/.bash_aliases
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    source /etc/bash_completion
+if ! shopt -oq posix ; then
+    sourceif /etc/bash_completion
 fi
 
 complete -C perldoc-complete -o nospace -o default perldoc
 
-
-if [ -s ~/perl5/perlbrew/etc/bashrc ] ; then
-    source ~/perl5/perlbrew/etc/bashrc
-fi
-
-if [ -s ~/.rvm/scripts/rvm ] ; then
-    source ~/.rvm/scripts/rvm
-fi
-
-if [ -s ~/.pythonbrew/etc/bashrc ] ; then
-    source ~/.pythonbrew/etc/bashrc
-fi
+sourceif ~/perl5/perlbrew/etc/bashrc
+sourceif ~/.rvm/scripts/rvm
+sourceif ~/.pythonbrew/etc/bashrc
 
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
