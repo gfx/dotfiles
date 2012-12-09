@@ -28,7 +28,7 @@ Bundle 'cocoa.vim'
 Bundle 'clang-complete'
 Bundle 'VimDebug'
 "Bundle 'basyura/jslint.vim'
-Bundle 'wookiehangover/jshint.vim'
+"Bundle 'wookiehangover/jshint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Tagbar'
 Bundle 'The-NERD-tree'
@@ -96,7 +96,7 @@ inoremap <expr> ,dt strftime('%H:%M:%S')
 " disable key recording
 noremap q <esc>
 
-" q for QuickRun
+" Q for QuickRun
 noremap Q :QuickRun<CR>
 
 function!Trim()
@@ -151,9 +151,9 @@ augroup END
 "yank and paste clipboard
 if has('mac') && !has('gui')
   nnoremap <silent> <Space>y :.w !pbcopy<CR><CR>
-  vnoremap <silent> <Space>y :w !pbcopy<CR><CR>
-  nnoremap <silent> <Space>p :r !pbpaste<CR>
-  vnoremap <silent> <Space>p :r !pbpaste<CR>
+  vnoremap <silent> <Space>y :w  !pbcopy<CR><CR>
+  nnoremap <silent> <Space>p :r  !pbpaste<CR>
+  vnoremap <silent> <Space>p :r  !pbpaste<CR>
 else
   " GVim(Mac & Win)
   noremap <Space>y "+y<CR>
@@ -205,7 +205,7 @@ let g:quickrun_config.jsx = {
 
 if !exists("g:jsx_compiler_auto_make")
     let g:jsx_compiler_auto_make = 1
-    autocmd! BufWritePost *.jsx silent make | redraw!
+    "autocmd! BufWritePost *.jsx silent make | redraw!
 endif
 
 " neocompletecache and omni completion
@@ -230,13 +230,12 @@ let g:neocomplcache_force_omni_patterns.objc =
 let g:neocomplcache_force_omni_patterns.objcpp =
       \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_use_library = 1
+let g:clang_auto_select   = 0
+let g:clang_use_library   = 1
 
 " filer
 let NERDTreeWinSize=24
 noremap f :NERDTreeToggle<CR>
-
 
 " unite.vim
 " nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
