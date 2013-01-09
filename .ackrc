@@ -28,6 +28,9 @@ dart=.dart
 --type-set
 eclipse=properties,.project,.prefs,.launch
 
+--type-set
+dalvik=.smali
+
 --smart-case
 
 --ignore-dir

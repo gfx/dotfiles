@@ -93,6 +93,10 @@ inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
 inoremap <expr> ,dd strftime('%Y-%m-%d')
 inoremap <expr> ,dt strftime('%H:%M:%S')
 
+" shortcuts for perltidy(1) and tidy(1)
+map ,pt  <Esc>:%! perltidy -se<CR>
+map ,ptv <Esc>:'<,'>! perltidy -se<CR>
+
 " disable key recording
 noremap q <esc>
 
@@ -207,6 +211,12 @@ if !exists("g:jsx_compiler_auto_make")
     let g:jsx_compiler_auto_make = 1
     "autocmd! BufWritePost *.jsx silent make | redraw!
 endif
+
+" matchit (installed by defualt)
+source $VIMRUNTIME/macros/matchit.vim
+
+" === PLUGINS ===
+
 
 " neocompletecache and omni completion
 

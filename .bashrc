@@ -3,6 +3,7 @@
 
 function sourceif {
 	if [ -f "$1" ]; then
+		#echo $1
 		source "$1"
 	fi
 }
@@ -73,10 +74,12 @@ if ! shopt -oq posix ; then
 fi
 
 complete -C perldoc-complete -o nospace -o default perldoc
+complete -C perldoc-complete -o nospace -o default cpandoc
 
 sourceif ~/perl5/perlbrew/etc/bashrc
 sourceif ~/.rvm/scripts/rvm
 sourceif ~/.pythonbrew/etc/bashrc
+sourceif ~/.nvm/nvm.sh
 
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 

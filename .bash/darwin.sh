@@ -3,11 +3,13 @@
 
 if which brew > /dev/null ; then
 
-	BREW_PREFIX=`brew --prefix`
-	if [ -f "$BREW_PREFIX/etc/bash_completion" ]; then
-		. "$BREW_PREFIX/etc/bash_completion"
-	fi
+	local BREW_PREFIX=`brew --prefix`
 
+	sourceif "$BREW_PREFIX/etc/bash_completion"
+	sourceif "$BREW_PREFIX/etc/profile.d/z.sh"
+
+    export PATH="~/dex2jar:$PATH"
+    export PATH="/usr/local/share/npm/bin:$PATH"
 	export PATH="/Applications/dart/sdk/bin:$PATH"
 	export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 	export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$MANPATH"
