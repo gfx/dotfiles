@@ -33,6 +33,8 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'Tagbar'
 Bundle 'The-NERD-tree'
 Bundle 'errormarker.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'rking/ag.vim'
 
 set title
 set ruler
@@ -115,7 +117,7 @@ autocmd! BufWritePre *.{c,cxx,hxx,hpp} call Trim()
 autocmd! BufWritePre *.{jsx} call Trim()
 "autocmd! BufWritePre *.{js} call Trim()
 "autocmd! BufWritePre *.{cpp,m,mm,hpp,java} call Trim()
-autocmd! BufWritePre *.{tt,mt,html,htm} call Trim()
+"autocmd! BufWritePre *.{tt,mt,html,htm} call Trim()
 autocmd! BufWritePre *rc call Trim()
 autocmd! BufWritePre Makefile call Trim()
 autocmd! BufWritePre Rakefile call Trim()
@@ -140,6 +142,7 @@ augroup END
 au BufRead,BufNewFile Makefile set noexpandtab
 au BufRead,BufNewFile *.jsx    set noexpandtab
 au BufRead,BufNewFile *.js     set noexpandtab
+au BufRead,BufNewFile *.html   set noexpandtab
 
 set clipboard+=unnamed
 "set clipboard+=autoselect
@@ -249,5 +252,4 @@ noremap f :NERDTreeToggle<CR>
 
 " unite.vim
 " nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
-
 

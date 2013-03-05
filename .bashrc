@@ -38,6 +38,9 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=200000
 
+# ignore *~ and etc.
+FIGNORE="~:.bak:.old:.o:.exe"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -77,14 +80,14 @@ complete -C perldoc-complete -o nospace -o default perldoc
 complete -C perldoc-complete -o nospace -o default cpandoc
 
 sourceif ~/perl5/perlbrew/etc/bashrc
-sourceif ~/.rvm/scripts/rvm
+#sourceif ~/.rvm/scripts/rvm
 sourceif ~/.pythonbrew/etc/bashrc
 sourceif ~/.nvm/nvm.sh
 
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
-export EDITOR='/usr/bin/vim'
-export PAGER='/usr/bin/less'
+export EDITOR="`which vim`"
+export PAGER="`which less`"
 #export PAGER="`which vimpager`"
 #if [ -z $PAGER ] ; then
 #    export PAGER='/usr/bin/less'

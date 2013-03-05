@@ -19,9 +19,7 @@ if which brew > /dev/null ; then
 
 fi
 
-export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
-
-export EDITOR="`which vim`"
+export PATH="/Applications/MacVim.app/Contents/MacOS:/usr/local/sbin:$PATH"
 
 export LANG=ja_JP.UTF-8
 
