@@ -92,7 +92,7 @@ export PAGER='/usr/bin/less'
 
 export LESS='-r -I' # --raw-control-chars and -IGNORE-CASE
 
-export PERL_CPANM_OPT='-nq'
+export PERL_CPANM_OPT='-q'
 
 # ------------------------------------------------------------------------------#
 
