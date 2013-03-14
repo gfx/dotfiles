@@ -6,7 +6,7 @@ alias ll='ls -l'
 alias la='ls -a'
 
 alias pad="plackup -s Starlet -MPlack::App::Directory \
-           -e 'Plack::App::Directory->new->to_app'"
+           -e 'Plack::App::Directory->new->to_app' --port 1234"
 
 function pm {
     PERLDOC_PAGER="$EDITOR" perldoc -m "$1" ;

@@ -97,6 +97,8 @@ export LESS='-r -I' # --raw-control-chars and -IGNORE-CASE
 
 export PERL_CPANM_OPT='-q'
 
+export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
+
 # ------------------------------------------------------------------------------#
 
 function git_branch {
