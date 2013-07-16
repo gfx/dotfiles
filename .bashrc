@@ -74,15 +74,20 @@ sourceif ~/.bash_aliases
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix ; then
     sourceif /etc/bash_completion
+    sourceif ~/.bash/rake-completion.sh
 fi
 
 complete -C perldoc-complete -o nospace -o default perldoc
 complete -C perldoc-complete -o nospace -o default cpandoc
 
 sourceif ~/perl5/perlbrew/etc/bashrc
-#sourceif ~/.rvm/scripts/rvm
 sourceif ~/.pythonbrew/etc/bashrc
 sourceif ~/.nvm/nvm.sh
+
+if which rbenv >/dev/null 2>&1 ; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
 
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
@@ -142,3 +147,6 @@ export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$
 title $PWD
 # EOF
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

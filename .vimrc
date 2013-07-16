@@ -8,6 +8,10 @@ call vundle#rc()
 
 set rtp+=~/repo/jsx.vim
 
+if $GOROOT != ''
+  set rtp+=$GOROOT/misc/vim
+endif
+
 syntax on
 filetype plugin indent on
 
@@ -23,7 +27,6 @@ Bundle 'othree/eregex.vim'
 Bundle 'petdance/vim-perl'
 Bundle 'hotchpotch/perldoc-vim'
 "Bundle 'pangloss/vim-javascript'
-Bundle 'bartekd/vim-dart'
 Bundle 'cocoa.vim'
 Bundle 'clang-complete'
 Bundle 'VimDebug'
@@ -31,10 +34,11 @@ Bundle 'VimDebug'
 "Bundle 'wookiehangover/jshint.vim'
 Bundle 'mattn/zencoding-vim'
 Bundle 'Tagbar'
-Bundle 'The-NERD-tree'
 Bundle 'errormarker.vim'
 Bundle 'tpope/vim-surround'
 Bundle 'rking/ag.vim'
+Bundle 'Blackrush/vim-gocode'
+Bundle 'dtjm/plantuml-syntax.vim'
 
 set title
 set ruler
@@ -91,9 +95,7 @@ noremap ms <C-w>s
 noremap mm :q<CR>
 
 " shortcuts for timestamp
-inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S')
-inoremap <expr> ,dd strftime('%Y-%m-%d')
-inoremap <expr> ,dt strftime('%H:%M:%S')
+inoremap <expr> ,df strftime('%Y-%m-%d %H:%M:%S%z')
 
 " shortcuts for perltidy(1) and tidy(1)
 map ,pt  <Esc>:%! perltidy -se<CR>
@@ -114,7 +116,7 @@ endfunction
 autocmd! BufWritePre *.{sh,t,pl,pm,psgi,xs,rb,py} call Trim()
 autocmd! BufWritePre *.{c,cxx,hxx,hpp} call Trim()
 
-autocmd! BufWritePre *.{jsx} call Trim()
+autocmd! BufWritePre *.{jsx,jx} call Trim()
 "autocmd! BufWritePre *.{js} call Trim()
 "autocmd! BufWritePre *.{cpp,m,mm,hpp,java} call Trim()
 "autocmd! BufWritePre *.{tt,mt,html,htm} call Trim()
@@ -140,9 +142,9 @@ augroup filetypedetect
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
-au BufRead,BufNewFile *.jsx    set noexpandtab
+au BufRead,BufNewFile *.jsx,*.jx    set noexpandtab
 au BufRead,BufNewFile *.js     set noexpandtab
-au BufRead,BufNewFile *.html   set noexpandtab
+"au BufRead,BufNewFile *.html   set noexpandtab
 
 set clipboard+=unnamed
 "set clipboard+=autoselect
@@ -188,6 +190,13 @@ function! s:html_filetype_settings()
     set shiftwidth=2
 endfunction
 autocmd FileType html call s:html_filetype_settings()
+
+" ruby setting
+function! s:ruby_filetype_settings()
+    set tabstop=2
+    set shiftwidth=2
+endfunction
+autocmd FileType ruby call s:html_filetype_settings()
 
 " document setting
 autocmd FileType md set spell
@@ -246,10 +255,6 @@ let g:clang_complete_auto = 0
 let g:clang_auto_select   = 0
 let g:clang_use_library   = 1
 
-" filer
-let NERDTreeWinSize=24
-noremap f :NERDTreeToggle<CR>
-
 " unite.vim
-" nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
+nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
 

@@ -17,6 +17,9 @@ if which brew > /dev/null ; then
 	export ANDROID_SDK=`brew --prefix android-sdk`
 	export ANDROID_NDK=`brew --prefix android-ndk`
 
+    export GOROOT="`brew --prefix go`"
+    export GOPATH=$HOME/.go
+    export PATH="$GOPATH/bin:$PATH"
 fi
 
 export PATH="/Applications/MacVim.app/Contents/MacOS:/usr/local/sbin:$PATH"
