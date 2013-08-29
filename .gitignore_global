@@ -10,4 +10,5 @@
 *.dSYM
 *.xcworkspace
 *.xcuserdata
-
+*~
+*.swp

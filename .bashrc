@@ -84,9 +84,14 @@ sourceif ~/perl5/perlbrew/etc/bashrc
 sourceif ~/.pythonbrew/etc/bashrc
 sourceif ~/.nvm/nvm.sh
 
-if which rbenv >/dev/null 2>&1 ; then
+if which -s rbenv ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
+fi
+
+if which -s plenv ; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(plenv init -)"
 fi
 
 export PATH="$HOME/.nodebrew/current/bin:$PATH"

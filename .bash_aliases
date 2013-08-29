@@ -8,6 +8,11 @@ alias la='ls -a'
 alias pad="plackup -s Starlet -MPlack::App::Directory \
            -e 'Plack::App::Directory->new->to_app' --port 1234"
 
+alias be='bundle exec'
+alias ce='carotn exec'
+
+alias got=git
+
 function pm-update {
     cpan-outdated -p | cpanm -q
 }

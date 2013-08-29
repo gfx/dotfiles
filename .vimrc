@@ -177,7 +177,8 @@ set listchars=tab:>\ ,eol:$
 
 " js setting
 function! s:javascript_filetype_settings()
-    set noexpandtab
+    set tabstop=2
+    set shiftwidth=2
     "autocmd BufLeave      <buffer> call jslint#clear()
     "autocmd BufWritePost  <buffer> call jslint#check()
     "autocmd CursorMoved   <buffer> call jslint#message()
@@ -206,7 +207,7 @@ let g:tagbar_sort = 0
 nnoremap ; :TagbarToggle<CR><C-w><C-l>
 
 " vimgrep
-set grepprg=ack\ -a
+set grepprg=ag
 
 " off the IME by the escape key
 "inoremap <ESC> <ESC>:set iminsert=0<CR>
@@ -253,8 +254,24 @@ let g:neocomplcache_force_omni_patterns.objcpp =
       \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:clang_complete_auto = 0
 let g:clang_auto_select   = 0
-let g:clang_use_library   = 1
+let g:clang_use_library   = 0
 
 " unite.vim
 nnoremap f :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru file<CR>
 
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
+
+" handle RSpec files
+let g:quickrun_config = {}
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'cmdopt': '--format progress -I .', 'exec': ['bundle exec %c %o %s %a'], 'output_filetype': 'rspec-result'}
+augroup RSpec
+  autocmd!
+  autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
+augroup END
+
+set regexpengine=1
+
+"vnoremap g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
