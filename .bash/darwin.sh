@@ -16,10 +16,13 @@ if which brew > /dev/null ; then
 
 	export ANDROID_SDK=`brew --prefix android-sdk`
 	export ANDROID_NDK=`brew --prefix android-ndk`
+	export ANDROID_HOME="$ANDROID_SDK"
 
     export GOROOT="`brew --prefix go`"
     export GOPATH=$HOME/.go
     export PATH="$GOPATH/bin:$PATH"
+
+    export CLASSPATH=".:/usr/local/opt/antlr/antlr-4.1-complete.jar"
 fi
 
 export PATH="/Applications/MacVim.app/Contents/MacOS:/usr/local/sbin:$PATH"

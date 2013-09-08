@@ -20,8 +20,5 @@ git submodule init && git submodule update
 mkdir -p ~/bin
 ln -fs "$PWD/perldoc-complete/perldoc-complete" ~/bin/
 
-mkdir -p ~/.vim/bundle
-ln -fs "$PWD/vundle" ~/.vim/bundle/
-
 echo "done."
 
