@@ -21,7 +21,7 @@ mkdir -p ~/bin
 ln -fs "$PWD/perldoc-complete/perldoc-complete" ~/bin/
 
 mkdir -p ~/.vim/bundle
-ln -fs "$PWD/vundle" ~/.vim/bundle/
+git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 
 echo "done."
 

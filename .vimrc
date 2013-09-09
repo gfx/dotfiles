@@ -1,10 +1,10 @@
 " .vimrc
 set nocompatible " this is vim, not vi
 
-
-" vundle
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
 
 set rtp+=~/repo/jsx.vim
 
@@ -15,32 +15,33 @@ endif
 syntax on
 filetype plugin indent on
 
-
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-Bundle 'Shougo/vimshell'
-Bundle 'thinca/vim-quickrun'
-Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-logcat'
-Bundle 'othree/eregex.vim'
-Bundle 'petdance/vim-perl'
-Bundle 'hotchpotch/perldoc-vim'
-"Bundle 'pangloss/vim-javascript'
-Bundle 'cocoa.vim'
-Bundle 'clang-complete'
-Bundle 'VimDebug'
-"Bundle 'basyura/jslint.vim'
-"Bundle 'wookiehangover/jshint.vim'
-Bundle 'mattn/zencoding-vim'
-Bundle 'Tagbar'
-Bundle 'errormarker.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'rking/ag.vim'
-Bundle 'Blackrush/vim-gocode'
-Bundle 'dtjm/plantuml-syntax.vim'
-Bundle 'rails.vim'
-Bundle 'nyarly/Simplecov-Vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-logcat'
+NeoBundle 'othree/eregex.vim'
+NeoBundle 'petdance/vim-perl'
+NeoBundle 'hotchpotch/perldoc-vim'
+"NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'cocoa.vim'
+NeoBundle 'clang-complete'
+NeoBundle 'VimDebug'
+"NeoBundle 'basyura/jslint.vim'
+"NeoBundle 'wookiehangover/jshint.vim'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'Tagbar'
+NeoBundle 'errormarker.vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'Blackrush/vim-gocode'
+NeoBundle 'dtjm/plantuml-syntax.vim'
+NeoBundle 'gf3/peg.vim'
+NeoBundle 'rails.vim'
+NeoBundle 'nyarly/Simplecov-Vim'
 
 set title
 set ruler
@@ -141,6 +142,7 @@ augroup filetypedetect
     autocmd! BufNewFile,BufRead *.{tt,mt}   setf html
     autocmd! BufNewFile,BufRead *.md   setf markdown
     autocmd! BufNewFile,BufRead *.dart setf dart
+    autocmd! BufNewFile,BufRead *.def setf c
 augroup END
 
 au BufRead,BufNewFile Makefile set noexpandtab
@@ -276,4 +278,5 @@ augroup END
 
 set regexpengine=1
 
+NeoBundleCheck
 "vnoremap g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
