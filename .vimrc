@@ -14,11 +14,13 @@ endif
 
 syntax on
 filetype plugin indent on
-
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc',
+        \ { 'build' : {
+        \     'mac'  : 'make -f make_mac.mak',
+        \     'unix' : 'make -f make_unix.mak'
+        \ }}
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
@@ -42,6 +44,8 @@ NeoBundle 'dtjm/plantuml-syntax.vim'
 NeoBundle 'gf3/peg.vim'
 NeoBundle 'rails.vim'
 NeoBundle 'nyarly/Simplecov-Vim'
+NeoBundle 'kana/vim-smartinput'
+NeoBundle 'motemen/git-vim'
 
 set title
 set ruler
@@ -67,6 +71,9 @@ set showmode
 
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
+
+" avoid new engine's issues
+set regexpengine=1
 
 
 " auto cd
@@ -276,7 +283,80 @@ augroup RSpec
   autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
 augroup END
 
-set regexpengine=1
+" smartinput (from sorah's https://raw.github.com/sorah/config/master/vim/dot.vimrc)
+call smartinput#clear_rules()
+call smartinput#define_default_rules()
 
+call smartinput#map_to_trigger('i', '<Bar>', '<Bar>', '<Bar>')
+call smartinput#map_to_trigger('i', '<Space>', '<Space>', '<Space>')
+call smartinput#map_to_trigger('i', '(', '(', '(')
+call smartinput#map_to_trigger('i', '{', '{', '{')
+call smartinput#map_to_trigger('i', "'", "'", "'")
+
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '\<do\>\( |.*|\)\?\%#'.
+                           \ '\|'. '^\s*\(if\|unless\|class\|module\|def\) .*\%#$'.
+                           \ '\|'. '^\s*def .\+(.*\%#.*)$',
+                           \ 'char': "<Enter>", 'input': '<End><Enter>end<Esc>O'})
+
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '\(\<do\>\|{\)\%#',
+                           \ 'char': "<Bar>", 'input': ' <Bar><Bar><Esc>i'})
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '\(\<do\>\|{\) \%#',
+                           \ 'char': "<Bar>", 'input': '<Bar><Bar><Esc>i'})
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '\<do\> |.*\%#|',
+                           \ 'char': "<Enter>", 'input': '<Esc>oend<Esc>O'})
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '\(\<do\>\|{\) |.*\%#|',
+                           \ 'char': "<Bar>", 'input': '<Right><Space>'})
+
+
+
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '^\s*\(require\|load\|require_relative\)\%#$',
+                           \ 'char': "<Space>", 'input': " ''<Left>"})
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '^\s*\(require\|load\|require_relative\) ' . "'" . '\%#' . "'$",
+                           \ 'char': "<Space>", 'input': ""})
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'],
+                           \ 'at': '^\s*\(require\|load\|require_relative\) ' . "'" . '\%#' . "'$",
+                           \ 'char': "'", 'input': ""})
+call smartinput#define_rule({'filetype': ['ruby', 'ruby.rspec'], 'syntax': ['Constant'],
+                           \ 'at': '^\s*\(require\|load\|require_relative\) .\+\%#',
+                           \ 'char': "<Enter>", 'input': "<Esc>o"})
+
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(describe\|context\)\%#$',
+                           \ 'char': "<Space>", 'input': ' "" do<Left><Left><Left><Left>'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(describe\|context\) .*\%#.* do$',
+                           \ 'char': "<Enter>", 'input': "<Esc>A<Enter>end<Esc>O"})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*it\%#$',
+                           \ 'char': "<Space>", 'input': ' ""<Left>'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(it\|specify\) "\%#"',
+                           \ 'char': "{", 'input': '<Esc>A<BS><BS>{  }<Left><Left>'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(it\|specify\) ".*\%#.*"$'.
+                           \ '\|'. '^\s*\(it\|specify\) ".*"\%#$',
+                           \ 'char': "<Enter>", 'input': '<Esc>A do<Enter>end<Esc>O'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(it\|specify\).*do\r\?\n\s*\(context\|describe\)\%#$',
+                           \ 'char': "<Space>", 'input': '<Esc>k:<C-u>.s/ do$//<Cr>j<<jddkA "" do<Left><Left><Left><Left>'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(it\|specify\).*do\r\?\n\s*\(it\|specify\)\%#$',
+                           \ 'char': "<Space>", 'input': '<Esc>k:<C-u>.s/ do$//<Cr>j<<jddkA ""<Left>'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(it\|specify\).*do\r\?\n\s*\(let\|before\|after\|around\|subject\)\%#$',
+                           \ 'char': "<Space>", 'input': '<esc>k:<c-u>.s/ do$//<cr>j<<jddka '})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*let\%#$',
+                           \ 'char': "(", 'input': '(:'})
+call smartinput#define_rule({'filetype': ['ruby.rspec'],
+                           \ 'at': '^\s*\(before\|after\|around\|subject\)\%#$',
+                           \ 'char': "<Enter>", 'input': ' do<Enter>end<Esc>O'})
 NeoBundleCheck
 "vnoremap g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
