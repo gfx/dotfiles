@@ -39,6 +39,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'rking/ag.vim'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'dtjm/plantuml-syntax.vim'
+Bundle 'rails.vim'
+Bundle 'nyarly/Simplecov-Vim'
 
 set title
 set ruler
@@ -266,7 +268,7 @@ let g:unite_source_grep_max_candidates = 200
 
 " handle RSpec files
 let g:quickrun_config = {}
-let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'cmdopt': '--format progress -I .', 'exec': ['bundle exec %c %o %s %a'], 'output_filetype': 'rspec-result'}
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'cmdopt': '--format doc -I .', 'exec': ['bundle exec %c %o %s %a'], 'output_filetype': 'rspec-result'}
 augroup RSpec
   autocmd!
   autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec
