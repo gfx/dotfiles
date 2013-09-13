@@ -1,10 +1,13 @@
 " .vimrc
+" License: Public Domain or NYSL
+
 set nocompatible " this is vim, not vi
 
+filetype off
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.vim/bundle/neobundle.vim
+    call neobundle#rc(expand('~/.vim/bundle/'))
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
 
 set rtp+=~/repo/jsx.vim
 
@@ -12,8 +15,6 @@ if $GOROOT != ''
   set rtp+=$GOROOT/misc/vim
 endif
 
-syntax on
-filetype plugin indent on
 NeoBundle 'Shougo/vimproc',
         \ { 'build' : {
         \     'mac'  : 'make -f make_mac.mak',
@@ -46,6 +47,12 @@ NeoBundle 'rails.vim'
 NeoBundle 'nyarly/Simplecov-Vim'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'motemen/git-vim'
+NeoBundle 'csv.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'smerrill/vcl-vim-plugin'
+
+syntax on
+filetype plugin indent on
 
 set title
 set ruler
