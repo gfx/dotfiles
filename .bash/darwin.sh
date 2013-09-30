@@ -16,7 +16,11 @@ if which brew > /dev/null ; then
 
 	export ANDROID_SDK=`brew --prefix android-sdk`
 	export ANDROID_NDK=`brew --prefix android-ndk`
-    export ANDROID_HOME="$ANDROID_SDK"
+    if [ -e "/Applications/Android Studio.app/sdk" ] ; then
+        export ANDROID_HOME="/Applications/Android Studio.app/sdk"
+    else
+        export ANDROID_HOME="$ANDROID_SDK"
+    fi
 
     export GOROOT="`brew --prefix go`"
     export GOPATH=$HOME/.go

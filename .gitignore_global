@@ -12,3 +12,6 @@
 *.xcuserdata
 *~
 *.swp
+*.iml
+.idea/
+.rakeTask

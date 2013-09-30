@@ -16,8 +16,9 @@ function title {
 title "reading ~/.bashrc ..."
 
 PATH="$HOME/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH"
-PATH="~/.vim/bin:$PATH"
-PATH="~/dev/depot_tools:$PATH"
+PATH="$HOME/.vim/bin:$PATH"
+PATH="$HOME/dev/depot_tools:$PATH"
+PATH="$HOME/repo/emscripten:$PATH"
 export PATH
 
 # OS specific resources
