@@ -50,6 +50,7 @@ NeoBundle 'motemen/git-vim'
 NeoBundle 'csv.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'smerrill/vcl-vim-plugin'
+NeoBundle 'haskell.vim'
 
 syntax on
 filetype plugin indent on

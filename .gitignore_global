@@ -12,6 +12,9 @@
 *.xcuserdata
 *~
 *.swp
+.rakeTasks
+
+# IntelliJ IDEA
 *.iml
 .idea/
-.rakeTask
+.generators
