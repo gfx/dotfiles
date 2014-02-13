@@ -51,6 +51,9 @@ NeoBundle 'csv.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'smerrill/vcl-vim-plugin'
 NeoBundle 'haskell.vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'tfnico/vim-gradle'
 
 syntax on
 filetype plugin indent on
@@ -80,8 +83,8 @@ set showmode
 set fileencoding=utf-8
 set fileencodings=utf-8,euc-jp,iso-2022-jp,cp932
 
-" avoid new engine's issues
-set regexpengine=1
+" avoid new engine's issues (VIM 7.4)
+" set regexpengine=1
 
 
 " auto cd

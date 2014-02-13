@@ -12,6 +12,7 @@ ln -fs "$PWD/.vimrc"        ~/
 ln -fs "$PWD/.ackrc"        ~/
 ln -fs "$PWD/.perltidyrc"   ~/
 ln -fs "$PWD/.gitignore_global"    ~/
+ln -fs "$PWD/.gitattributes_global"    ~/
 ln -fs "$PWD/.gitconfig"    ~/
 ln -fs "$PWD/.tmux.conf"    ~/
 
@@ -21,7 +22,9 @@ mkdir -p ~/bin
 ln -fs "$PWD/perldoc-complete/perldoc-complete" ~/bin/
 
 mkdir -p ~/.vim/bundle
-git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+if [ ! -e ~/.vim/bundle/neobundle.vim ] ; then
+    git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+fi
 
 echo "done."
 
