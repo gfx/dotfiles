@@ -19,6 +19,11 @@ PATH="$HOME/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH"
 PATH="$HOME/.vim/bin:$PATH"
 PATH="$HOME/dev/depot_tools:$PATH"
 PATH="$HOME/repo/emscripten:$PATH"
+<<<<<<< HEAD
+=======
+PATH="/Applications/dart/dart-sdk/bin:$PATH"
+
+>>>>>>> use-zsh
 export PATH
 
 # OS specific resources
@@ -153,6 +158,7 @@ export PATH=`perl -e 'print join ":", grep { !$u{$_}++ } split /:/, $ARGV[0]' "$
 title $PWD
 # EOF
 
+export JAVA_HOME=`/usr/libexec/java_home`
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

@@ -13,6 +13,8 @@ alias ce='carotn exec'
 
 alias got=git
 
+alias perldoc="perldoc -M Pod::Text::Color::Delight"
+
 function pm-update {
     cpan-outdated -p | cpanm -q
 }
@@ -28,4 +30,3 @@ function pm-ack { # pm-ack $pettern $module
 complete -C perldoc-complete -o nospace -o default pm
 complete -C perldoc-complete -o nospace -o default pm-version
 complete -C perldoc-complete -o nospace -o default pm-ack
-

@@ -53,6 +53,7 @@ NeoBundle 'smerrill/vcl-vim-plugin'
 NeoBundle 'haskell.vim'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'dart-lang/dart-vim-plugin'
 NeoBundle 'tfnico/vim-gradle'
 
 syntax on
@@ -221,6 +222,14 @@ function! s:ruby_filetype_settings()
 endfunction
 autocmd FileType ruby call s:html_filetype_settings()
 
+" golang setting
+function! s:golang_filetype_settings()
+    set noexpandtab
+    set tabstop=2
+    set shiftwidth=2
+endfunction
+autocmd FileType go call s:golang_filetype_settings()
+
 " document setting
 autocmd FileType md set spell
 
@@ -288,7 +297,7 @@ let g:unite_source_grep_max_candidates = 200
 
 " handle RSpec files
 let g:quickrun_config = {}
-let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'cmdopt': '--format doc -I .', 'exec': ['bundle exec %c %o %s %a'], 'output_filetype': 'rspec-result'}
+let g:quickrun_config['ruby.rspec'] = {'command': 'rspec', 'exec': ['bundle exec %c %o %s %a'], 'output_filetype': 'rspec-result'}
 augroup RSpec
   autocmd!
   autocmd BufWinEnter,BufNewFile *_spec.rb set filetype=ruby.rspec

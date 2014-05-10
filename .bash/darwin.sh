@@ -22,7 +22,7 @@ if which brew > /dev/null ; then
         export ANDROID_HOME="$ANDROID_SDK"
     fi
 
-    export GOROOT="`brew --prefix go`"
+    #export GOROOT="`brew --prefix go`"
     export GOPATH=$HOME/.go
     export PATH="$GOPATH/bin:$PATH"
 
