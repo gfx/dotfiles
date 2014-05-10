@@ -59,11 +59,11 @@ export LANG=ja_JP.UTF-8
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # non-standard PATHs
-export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
 export PATH="$HOME/.vim/bin:$PATH"
 export PATH="$HOME/dev/devopt_tools:$PATH"
 export PATH="$HOME/repo/emscripten:$PATH"
 export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
 
 export MANPATH="/usr/local/man:$MANPATH"
 
@@ -104,6 +104,9 @@ export PATH="$GOPATH/bin:$PATH"
 
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 export JAVA_HOME=`/usr/libexec/java_home`
+
+export EDITOR=`which vim`
+alias ls="ls --color -G"
 
 # zaw-settings
 source-if-exists "$HOME/.zaw/zaw.zsh"
