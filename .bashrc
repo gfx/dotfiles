@@ -19,11 +19,6 @@ PATH="$HOME/bin:$HOME/.cabal/bin:/usr/local/bin:$PATH"
 PATH="$HOME/.vim/bin:$PATH"
 PATH="$HOME/dev/depot_tools:$PATH"
 PATH="$HOME/repo/emscripten:$PATH"
-<<<<<<< HEAD
-=======
-PATH="/Applications/dart/dart-sdk/bin:$PATH"
-
->>>>>>> use-zsh
 export PATH
 
 # OS specific resources
