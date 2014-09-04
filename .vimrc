@@ -35,7 +35,6 @@ NeoBundle 'clang-complete'
 NeoBundle 'VimDebug'
 "NeoBundle 'basyura/jslint.vim'
 "NeoBundle 'wookiehangover/jshint.vim'
-NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'Tagbar'
 NeoBundle 'errormarker.vim'
 NeoBundle 'tpope/vim-surround'
@@ -55,6 +54,7 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'dart-lang/dart-vim-plugin'
 NeoBundle 'tfnico/vim-gradle'
+NeoBundle 'toyamarinyon/vim-swift'
 
 syntax on
 filetype plugin indent on
