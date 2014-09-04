@@ -62,7 +62,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="$HOME/.vim/bin:$PATH"
 export PATH="$HOME/dev/devopt_tools:$PATH"
 export PATH="$HOME/repo/emscripten:$PATH"
-export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
 
 export MANPATH="/usr/local/man:$MANPATH"
@@ -83,19 +83,19 @@ if which rbenv >/dev/null ; then
     eval "$(rbenv init -)"
 fi
 
-if which -s plenv >/dev/null ; then
+if which plenv >/dev/null ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(plenv init -)"
 fi
 
-if which -s brew >/dev/null ; then
-	local BREW_PREFIX=`brew --prefix`
+if which brew >/dev/null ; then
+    local BREW_PREFIX=`brew --prefix`
 
-	export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-	export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
+    export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+    export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
 
-	export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
-	export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
+    export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
+    export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
     export ANDROID_HOME="$ANDROID_SDK"
 fi
 
