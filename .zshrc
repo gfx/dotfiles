@@ -1,3 +1,8 @@
+# Set the most important PATHs first.
+
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/opt/brew/bin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -56,16 +61,16 @@ source $ZSH/oh-my-zsh.sh
 
 export LANG=ja_JP.UTF-8
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
-
 # non-standard PATHs
 export PATH="$HOME/.vim/bin:$PATH"
 export PATH="$HOME/dev/devopt_tools:$PATH"
-export PATH="$HOME/repo/emscripten:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
+export PATH="/usr/texbin:$PATH"
 
 export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/opt/brew/man:$MANPATH"
 
 function source-if-exists {
   if [[ -s $1 ]] then
@@ -73,7 +78,7 @@ function source-if-exists {
   fi
 }
 
-
+source-if-exists ~/.zsh_profile
 source-if-exists ~/perl5/perlbrew/etc/bashrc
 source-if-exists ~/.pythonbrew/etc/bashrc
 source-if-exists ~/.nvm/nvm.sh
@@ -97,13 +102,19 @@ if which brew >/dev/null ; then
     export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
     export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
     export ANDROID_HOME="$ANDROID_SDK"
+
+    export RUBYMOTION_ANDROID_SDK="$ANDROID_SDK"
+    export RUBYMOTION_ANDROID_NDK="$ANDROID_NDK"
+fi
+
+if which direnv>/dev/null ; then
+    eval "$(direnv hook zsh)"
 fi
 
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
 
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
-export JAVA_HOME=`/usr/libexec/java_home`
 
 export EDITOR=`which vim`
 alias ls="ls --color -G"
