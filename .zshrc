@@ -1,6 +1,5 @@
 # Set the most important PATHs first.
 
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/opt/brew/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
@@ -53,7 +52,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew bundler cpanm gem npm gradle perl)
+plugins=(git bundler cpanm gem npm perl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -66,11 +65,9 @@ export PATH="$HOME/.vim/bin:$PATH"
 export PATH="$HOME/dev/devopt_tools:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="/Applications/MacVim.app/Contents/MacOS:$PATH"
-export PATH="/usr/texbin:$PATH"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/opt/brew/man:$MANPATH"
 
 function source-if-exists {
   if [[ -s $1 ]] then
@@ -82,6 +79,10 @@ source-if-exists ~/.zsh_profile
 source-if-exists ~/perl5/perlbrew/etc/bashrc
 source-if-exists ~/.pythonbrew/etc/bashrc
 source-if-exists ~/.nvm/nvm.sh
+source-if-exists ~/ghq/github.com/emscripten-core/emsdk/emsdk_env.sh >/dev/null
+
+source-if-exists '/opt/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source-if-exists '/opt/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 
 if which rbenv >/dev/null ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -98,6 +99,7 @@ if which brew >/dev/null ; then
 
     export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
     export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
+    export MANPATH="$BREW_PREFIX/man:$MANPATH"
 
     export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
     export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
@@ -116,10 +118,16 @@ export PATH="$GOPATH/bin:$PATH"
 
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
-export EDITOR=`which vim`
+export EDITOR=`which code`
+
 alias ls="ls --color -G"
+alias ll="ls -l"
 
-# zaw-settings
-source-if-exists "$HOME/.zaw/zaw.zsh"
+alias genmagic="openssl rand -hex 4"
 
-bindkey '^r' zaw-history
+alias g='cd $(ghq root)/$(ghq list | peco)'
+alias b='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
+alias v='code $(ghq root)/$(ghq list | peco)'
+
+
+# bindkey '^r' zaw-history
