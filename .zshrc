@@ -83,9 +83,6 @@ source-if-exists ~/.nvm/nvm.sh
 source-if-exists ~/google-cloud-sdk/path.zsh.inc
 source-if-exists ~/google-cloud-sdk/completion.zsh.inc
 
-export FASTLY_CHEF_USERNAME=gfuji
-eval "$(chef shell-init zsh)"
-
 if which rbenv >/dev/null ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
