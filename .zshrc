@@ -1,7 +1,5 @@
 # Set the most important PATHs first.
 
-export PATH="/opt/brew/bin:$PATH"
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -52,22 +50,19 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler cpanm gem npm perl)
+plugins=(git bundler cpanm gem npm perl rust)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # non-standard PATHs
-export PATH="$HOME/.vim/bin:$PATH"
-export PATH="$HOME/dev/devopt_tools:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.nodebrew/current/bin:$PATH"
-
-export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$HOME/man:$MANPATH"
 
 function source-if-exists {
   if [[ -s $1 ]] then
@@ -75,14 +70,21 @@ function source-if-exists {
   fi
 }
 
+source-if-exists ~/ghq/github.com/emscripten-core/emsdk/emsdk_env.sh
+# nodebrew's path must be inserted after emsdk
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
+
+source-if-exists ~/.profile
 source-if-exists ~/.zsh_profile
 source-if-exists ~/perl5/perlbrew/etc/bashrc
-source-if-exists ~/.pythonbrew/etc/bashrc
+source-if-exists ~/.pythonbrew/etc/zshrc
 source-if-exists ~/.nvm/nvm.sh
-source-if-exists ~/ghq/github.com/emscripten-core/emsdk/emsdk_env.sh >/dev/null
 
-source-if-exists '/opt/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-source-if-exists '/opt/brew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+source-if-exists ~/google-cloud-sdk/path.zsh.inc
+source-if-exists ~/google-cloud-sdk/completion.zsh.inc
+
+export FASTLY_CHEF_USERNAME=gfuji
+eval "$(chef shell-init zsh)"
 
 if which rbenv >/dev/null ; then
     export PATH="$HOME/.rbenv/bin:$PATH"
@@ -95,7 +97,7 @@ if which plenv >/dev/null ; then
 fi
 
 if which brew >/dev/null ; then
-    local BREW_PREFIX=`brew --prefix`
+    local BREW_PREFIX="$(brew --prefix)"
 
     export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
     export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -104,30 +106,28 @@ if which brew >/dev/null ; then
     export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
     export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
     export ANDROID_HOME="$ANDROID_SDK"
-
-    export RUBYMOTION_ANDROID_SDK="$ANDROID_SDK"
-    export RUBYMOTION_ANDROID_NDK="$ANDROID_NDK"
 fi
 
-if which direnv>/dev/null ; then
-    eval "$(direnv hook zsh)"
-fi
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 export GOPATH=$HOME/.go
 export PATH="$GOPATH/bin:$PATH"
 
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
-export EDITOR=`which code`
+export EDITOR="$(which code)"
 
-alias ls="ls --color -G"
+alias ls="ls --color"
 alias ll="ls -l"
 
 alias genmagic="openssl rand -hex 4"
 
-alias g='cd $(ghq root)/$(ghq list | peco)'
-alias b='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
-alias v='code $(ghq root)/$(ghq list | peco)'
+alias g='cd $(ghq list --full-path | perl -pE 's/\Q$ENV{HOME}/~/' | peco)'
+alias v='code $$(ghq list --full-path | peco)'
 
+export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
 
-# bindkey '^r' zaw-history
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE=~/.zsh_history
