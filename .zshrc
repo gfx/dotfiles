@@ -116,7 +116,7 @@ export PATH="$GOPATH/bin:$PATH"
 
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
-export EDITOR="$(which code)"
+#export EDITOR="$(which code)"
 
 alias ls="ls --color"
 alias ll="ls -l"
