@@ -50,12 +50,13 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git bundler cpanm gem npm perl rust)
+plugins=(git bundler cpanm gem npm perl python rust)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -109,7 +110,7 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 export GOPATH=$HOME/.go
-export PATH="$GOPATH/bin:$PATH"
+export PATH="$GOPATH/bin:$HOME/go/bin:$PATH"
 
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 
@@ -118,12 +119,12 @@ export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF-8
 alias ls="ls --color"
 alias ll="ls -l"
 
-alias genmagic="openssl rand -hex 4"
-
 alias g='cd $(ghq list --full-path | perl -pE 's/\Q$ENV{HOME}/~/' | peco)'
 alias v='code $$(ghq list --full-path | peco)'
 
-export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+if which xcrun > /dev/null ; then
+  export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
+fi
 
 HISTSIZE=1000000
 SAVEHIST=1000000

@@ -12,7 +12,6 @@ ln -fs "$PWD/.inputrc" ~/
 ln -fs "$PWD/.tmux.conf"    ~/
 
 mkdir -p ~/bin
-ln -fs "$PWD/perldoc-complete/perldoc-complete" ~/bin/
 
 echo "done."
 
