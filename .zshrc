@@ -94,6 +94,10 @@ if which plenv >/dev/null ; then
     eval "$(plenv init -)"
 fi
 
+if [[ -d /opt/homebrew ]] ; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 if which brew >/dev/null ; then
     local BREW_PREFIX="$(brew --prefix)"
 
