@@ -104,6 +104,8 @@ if which brew >/dev/null ; then
     export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
     export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
     export MANPATH="$BREW_PREFIX/man:$MANPATH"
+    export PATH="$BREW_PREFIX/opt/rustup/bin:$PATH"
+    source-if-exists "$BREW_PREFIX/opt/nvm/nvm.sh"
 
     export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
     export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
