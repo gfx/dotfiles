@@ -71,6 +71,23 @@ function source-if-exists {
   fi
 }
 
+if [[ -d /opt/homebrew ]] ; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+if which brew >/dev/null ; then
+    local BREW_PREFIX="$(brew --prefix)"
+
+    export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+    export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
+    export MANPATH="$BREW_PREFIX/man:$MANPATH"
+    export PATH="$BREW_PREFIX/opt/rustup/bin:$PATH"
+    source-if-exists "$BREW_PREFIX/opt/nvm/nvm.sh"
+
+    export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
+    export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
+    export ANDROID_HOME="$ANDROID_SDK"
+fi
+
 source-if-exists ~/ghq/github.com/emscripten-core/emsdk/emsdk_env.sh
 # nodebrew's path must be inserted after emsdk
 export PATH="$HOME/.nodebrew/current/bin:$PATH"
@@ -90,26 +107,14 @@ if which rbenv >/dev/null ; then
 fi
 
 if which plenv >/dev/null ; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
+    export PATH="$HOME/.plenv/bin:$PATH"
     eval "$(plenv init -)"
 fi
 
-if [[ -d /opt/homebrew ]] ; then
-    export PATH="/opt/homebrew/bin:$PATH"
-fi
-
-if which brew >/dev/null ; then
-    local BREW_PREFIX="$(brew --prefix)"
-
-    export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-    export MANPATH="$BREW_PREFIX/opt/coreutils/libexec/gnuman:$MANPATH"
-    export MANPATH="$BREW_PREFIX/man:$MANPATH"
-    export PATH="$BREW_PREFIX/opt/rustup/bin:$PATH"
-    source-if-exists "$BREW_PREFIX/opt/nvm/nvm.sh"
-
-    export ANDROID_SDK="$BREW_PREFIX/opt/android-sdk"
-    export ANDROID_NDK="$BREW_PREFIX/opt/android-ndk"
-    export ANDROID_HOME="$ANDROID_SDK"
+if which pyenv >/dev/null ; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    export PATH="$HOME/.local/bin:$PATH" # poetry
 fi
 
 export DENO_INSTALL="$HOME/.deno"
