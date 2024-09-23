@@ -157,3 +157,4 @@ export JAVA_HOME=`/usr/libexec/java_home`
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+. "$HOME/.cargo/env"

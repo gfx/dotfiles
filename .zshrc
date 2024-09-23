@@ -96,7 +96,9 @@ source-if-exists ~/.profile
 source-if-exists ~/.zsh_profile
 source-if-exists ~/perl5/perlbrew/etc/bashrc
 source-if-exists ~/.pythonbrew/etc/zshrc
-source-if-exists ~/.nvm/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+source-if-exists "$NVM_DIR/nvm.sh"
+source-if-exists "$NVM_DIR/bash_completion"
 
 source-if-exists ~/google-cloud-sdk/path.zsh.inc
 source-if-exists ~/google-cloud-sdk/completion.zsh.inc
@@ -140,3 +142,4 @@ fi
 HISTSIZE=1000000
 SAVEHIST=1000000
 HISTFILE=~/.zsh_history
+
